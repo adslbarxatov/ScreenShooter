@@ -1,7 +1,5 @@
 # ScreenShooter v 1.1
 
-#
-
 An utility for making screenshots / Утилита для создания скриншотов
 
 #
@@ -22,3 +20,6 @@ It is recommended to pin application on task panel or attach a hotkey to it.
 
 #
 
+Needs Windows XP and newer, Framework 4.0 and newer. Interface languages: ru_ru
+
+Требуется ОС Windows XP и новее, Framework 4.0 и новее. Языки интерфейса: ru_ru
