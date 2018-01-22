@@ -1,5 +1,7 @@
+﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace ScreenShooter
@@ -35,13 +37,15 @@ namespace ScreenShooter
 		// Нажатие мыши
 		private void MainForm_MouseDown (object sender, MouseEventArgs e)
 			{
-			if (e.Button == System.Windows.Forms.MouseButtons.Right)
+			// Сохранение изображения
+			if (e.Button == MouseButtons.Right)
 				{
 				SaveImage ();
 				return;
 				}
 
-			if (e.Button != System.Windows.Forms.MouseButtons.Left)
+			// Обработка выделения области
+			if (e.Button != MouseButtons.Left)
 				return;
 
 			if (!MainSelection.Visible)
@@ -113,7 +117,8 @@ namespace ScreenShooter
 						" от " + ProgramDescription.AssemblyLastUpdate + "\n" + ProgramDescription.AssemblyCopyright + "\n\n" +
 
 						"• Левая кнопка мыши (нажать и тянуть) – выбор области снимка;\n" +
-						"• Левый щелчок по выбранной области или клавиша Пробел – сброс выделения;\n" +
+						"• Левый щелчок или клавиша Пробел (при наличии выделения) – сброс выделения;\n" +
+						"• Клавиша Пробел (при отсутствии выделения) – выделение окна, на которое указывает курсор;\n" +
 						"• Правая кнопка мыши или клавиша Enter – сохранение изображения;\n" +
 						"• F1 – вызов этого справочного сообщения;\n" +
 						"• Q, X, Esc, Alt + F4 – выход из программы",
@@ -134,7 +139,19 @@ namespace ScreenShooter
 
 				// Сброс выделения
 				case Keys.Space:
-					MainSelection.Visible = false;
+					if (MainSelection.Visible)
+						{
+						MainSelection.Visible = false;
+						}
+					else
+						{
+						if (GetPointedWindowBounds (MousePosition.X, MousePosition.Y))
+							{
+							MainSelection.Text = "(" + MainSelection.Left.ToString () + "; " + MainSelection.Top.ToString () + ") (" +
+								MainSelection.Width.ToString () + " x " + MainSelection.Height.ToString () + ")";
+							MainSelection.Visible = true;
+							}
+						}
 					break;
 				}
 			}
@@ -153,9 +170,7 @@ namespace ScreenShooter
 
 			// Получение дескриптора и снимка экрана
 			if (b != null)
-				{
 				b.Dispose ();
-				}
 			b = new Bitmap (end.X - start.X + 1, end.Y - start.Y + 1);
 
 			g = Graphics.FromImage (b);
@@ -198,6 +213,80 @@ namespace ScreenShooter
 
 			// Завершение
 			b.Dispose ();
+			}
+
+		// Получение границ окна, на которое наведён курсор
+		private bool GetPointedWindowBounds (int X, int Y)
+			{
+			// Получение дескриптора окна
+			POINT p = new POINT ();
+			p.X = X;
+			p.Y = Y;
+
+			IntPtr hWnd = IntPtr.Zero;
+			try
+				{
+				// Подмена текущего окна
+				this.Hide ();
+				hWnd = WindowFromPoint (p);
+				this.Show ();
+
+				if (hWnd == IntPtr.Zero)
+					throw new Exception ();
+				}
+			catch
+				{
+				return false;
+				}
+
+			// Получение границ окна
+			RECT r = new RECT ();
+			try
+				{
+				if (!GetWindowRect (hWnd, out r))
+					throw new Exception ();
+				}
+			catch
+				{
+				return false;
+				}
+
+			// Преобразование параметров и возврат
+			MainSelection.Left = start.X = (r.Left < 0) ? 0 : r.Left;
+			MainSelection.Top = start.Y = (r.Top < 0) ? 0 : r.Top;
+
+			if (r.Right >= Screen.PrimaryScreen.Bounds.Width)
+				r.Right = Screen.PrimaryScreen.Bounds.Width ;
+			if (r.Bottom >= Screen.PrimaryScreen.Bounds.Height)
+				r.Bottom = Screen.PrimaryScreen.Bounds.Height ;
+
+			MainSelection.Width = r.Right - r.Left;
+			MainSelection.Height = r.Bottom - r.Top;
+			end.X = r.Right - 1;
+			end.Y = r.Bottom - 1;
+
+			return true;
+			}
+
+		// Описания, необходимые для получения границ окна
+		[DllImport ("User32.dll")]
+		private static extern bool GetWindowRect (IntPtr hWnd, out RECT Rectangle);
+
+		private struct RECT
+			{
+			public Int32 Left;
+			public Int32 Top;
+			public Int32 Right;
+			public Int32 Bottom;
+			}
+
+		[DllImport ("User32.dll")]
+		private static extern IntPtr WindowFromPoint (POINT MousePoint);
+
+		private struct POINT
+			{
+			public Int32 X;
+			public Int32 Y;
 			}
 		}
 	}
