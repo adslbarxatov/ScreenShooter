@@ -51,6 +51,7 @@ namespace ScreenShooter
 			if (!MainSelection.Visible)
 				MainSelection.Visible = true;
 
+			// Фиксация начальной точки
 			MainSelection.Location = start = e.Location;
 			}
 
@@ -60,6 +61,7 @@ namespace ScreenShooter
 			if (e.Button != System.Windows.Forms.MouseButtons.Left)
 				return;
 
+			// Обновление рамки выделения
 			if (e.X >= start.X)
 				{
 				MainSelection.Left = start.X;
@@ -82,6 +84,7 @@ namespace ScreenShooter
 				MainSelection.Height = start.Y - e.Y + 1;
 				}
 
+			// Отображение координат и размеров
 			MainSelection.Text = "(" + MainSelection.Left.ToString () + "; " + MainSelection.Top.ToString () + ") (" +
 				MainSelection.Width.ToString () + " x " + MainSelection.Height.ToString () + ")";
 			}
@@ -92,7 +95,7 @@ namespace ScreenShooter
 			end = e.Location;
 			}
 
-		// Передача управления на форму
+		// Команды рамки выделения
 		private void MainSelection_MouseDown (object sender, MouseEventArgs e)
 			{
 			if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -168,13 +171,27 @@ namespace ScreenShooter
 				end.Y = Screen.PrimaryScreen.Bounds.Height - 1;
 				}
 
+			// На случай зеркального выделения
+			if (start.X > end.X)
+				{
+				int x = start.X;
+				start.X = end.X;
+				end.X = x;
+				}
+			if (start.Y > end.Y)
+				{
+				int y = start.Y;
+				start.Y = end.Y;
+				end.Y = y;
+				}
+
 			// Получение дескриптора и снимка экрана
 			if (b != null)
 				b.Dispose ();
 			b = new Bitmap (end.X - start.X + 1, end.Y - start.Y + 1);
 
 			g = Graphics.FromImage (b);
-			g.CopyFromScreen (start.X, start.Y, 0, 0, new Size (end.X - start.X + 1, end.Y - start.Y + 1));
+			g.CopyFromScreen (start.X, start.Y, 0, 0, b.Size);
 			g.Dispose ();
 
 			// Запрос имени файла (делается после снимка, чтобы не перекрывать экран)
@@ -219,11 +236,9 @@ namespace ScreenShooter
 		private bool GetPointedWindowBounds (int X, int Y)
 			{
 			// Получение дескриптора окна
-			POINT p = new POINT ();
-			p.X = X;
-			p.Y = Y;
-
+			POINT p = new POINT (X, Y);
 			IntPtr hWnd = IntPtr.Zero;
+
 			try
 				{
 				// Подмена текущего окна
@@ -255,10 +270,10 @@ namespace ScreenShooter
 			MainSelection.Left = start.X = (r.Left < 0) ? 0 : r.Left;
 			MainSelection.Top = start.Y = (r.Top < 0) ? 0 : r.Top;
 
-			if (r.Right >= Screen.PrimaryScreen.Bounds.Width)
-				r.Right = Screen.PrimaryScreen.Bounds.Width ;
-			if (r.Bottom >= Screen.PrimaryScreen.Bounds.Height)
-				r.Bottom = Screen.PrimaryScreen.Bounds.Height ;
+			if (r.Right > Screen.PrimaryScreen.Bounds.Width)
+				r.Right = Screen.PrimaryScreen.Bounds.Width;
+			if (r.Bottom > Screen.PrimaryScreen.Bounds.Height)
+				r.Bottom = Screen.PrimaryScreen.Bounds.Height;
 
 			MainSelection.Width = r.Right - r.Left;
 			MainSelection.Height = r.Bottom - r.Top;
@@ -278,6 +293,14 @@ namespace ScreenShooter
 			public Int32 Top;
 			public Int32 Right;
 			public Int32 Bottom;
+
+			/*public RECT (Int32 LV, Int32 TV, Int32 RV, Int32 BV)
+				{
+				Left = LV;
+				Top = TV;
+				Right = RV;
+				Bottom = BV;
+				}*/
 			}
 
 		[DllImport ("User32.dll")]
@@ -287,6 +310,12 @@ namespace ScreenShooter
 			{
 			public Int32 X;
 			public Int32 Y;
+
+			public POINT (Int32 XV, Int32 YV)
+				{
+				X = XV;
+				Y = YV;
+				}
 			}
 		}
 	}
