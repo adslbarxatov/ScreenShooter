@@ -5,3 +5,7 @@ Version 1.1
  
 Version 1.2
  • Added 'single window shot' function (press F1 for details).
+
+Version 1.3
+ • 'Saving reversed (from right to left and/or from bottom to top) selection' bug fixed.
+ • Minor code updates applied.
