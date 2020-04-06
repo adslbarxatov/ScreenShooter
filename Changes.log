@@ -1,11 +1,16 @@
-Screen shooter changes log
+﻿Screen shooter changes log
 
-Version 1.1
- • Publication on GitHub.
- 
-Version 1.2
- • Added 'single window shot' function (press F1 for details).
+Version 1.4u:
+• Application namespace, icon and development environment have been unified;
+• Localization system added; English language added for application interface;
+• Some interface improvements applied
 
-Version 1.3
- • 'Saving reversed (from right to left and/or from bottom to top) selection' bug fixed.
- • Minor code updates applied.
+Version 1.3:
+• Saving reversed (from right to left and/or from bottom to top) selection bug fixed;
+• Minor code updates applied
+
+Version 1.2:
+• Added 'single window shot' function (press F1 for details)
+
+Version 1.1:
+• Publication on GitHub

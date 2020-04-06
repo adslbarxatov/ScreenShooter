@@ -1,4 +1,4 @@
-# ScreenShooter v 1.3
+# ScreenShooter v 1.4u
 
 An utility for making screenshots / Утилита для создания скриншотов
 
@@ -28,6 +28,6 @@ We're strongly recommend reading it before using our products.
 
 #
 
-Needs Windows XP and newer, Framework 4.0 and newer. Interface language: ru_ru
+Needs Windows XP and newer, Framework 4.0 and newer. Interface languages: ru_ru, en_us
 
-Требуется ОС Windows XP и новее, Framework 4.0 и новее. Язык интерфейса: ru_ru
+Требуется ОС Windows XP и новее, Framework 4.0 и новее. Языки интерфейса: ru_ru, en_us
