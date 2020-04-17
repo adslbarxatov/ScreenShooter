@@ -1,4 +1,4 @@
-# ScreenShooter v 1.4.1
+# ScreenShooter v 1.4.3L
 
 An utility for making screenshots / Утилита для создания скриншотов
 
