@@ -124,12 +124,12 @@
     <value>Control
 
 • Left mouse button (hold and move) – screenshot field selection;
-• Left click or Space key (if selection made) – reset selection;
+• Left click or Space key (if selection made) – resetting selection;
 • Space key (if selection absent) – selection of window that is pointed by mouse;
 • Right mouse button or Enter key – image saving;
-• F1 – show this quick manual;
-• Q, X, Esc, Alt + F4 – exit application;
-• L – change interface language</value>
+• F1 – displaying of this quick manual;
+• Q, X, Esc, Alt + F4 – exiting application;
+• L – changing of interface language</value>
   </data>
   <data name="LanguageSelectorMessage" xml:space="preserve">
     <value>Current interface language is {0:S}.

@@ -122,10 +122,10 @@ namespace RD_AAOW
 				{
 				// Справка
 				case Keys.F1:
-					ProgramDescription.ShowAbout ();
-
-					MessageBox.Show (Localization.GetText ("HelpText", al),
-						ProgramDescription.AssemblyTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+					AboutForm af = new AboutForm (al, "https://github.com/adslbarxatov/ScreenShooter",
+						"https://github.com/adslbarxatov/ScreenShooter/releases",
+						"",
+						Localization.GetText ("HelpText", al));
 					break;
 
 				// Сохранение
