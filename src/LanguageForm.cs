@@ -32,9 +32,15 @@ namespace RD_AAOW
 			OKButton.Text = Localization.GetText ("NextButtonText", CurrentInterfaceLanguage);
 			AbortButton.Text = Localization.GetText ("AbortButtonText", CurrentInterfaceLanguage);
 
+#if SIMPLE_HWE
+			this.BackColor = Color.FromKnownColor (KnownColor.Control);
+			Label01.ForeColor = LanguagesCombo.ForeColor = OKButton.ForeColor = AbortButton.ForeColor = Color.FromArgb (0, 0, 0);
+			LanguagesCombo.BackColor = OKButton.BackColor = AbortButton.BackColor = Color.FromKnownColor (KnownColor.Control);
+#else
 			this.BackColor = ProgramDescription.MasterBackColor;
 			Label01.ForeColor = LanguagesCombo.ForeColor = OKButton.ForeColor = AbortButton.ForeColor = ProgramDescription.MasterTextColor;
 			LanguagesCombo.BackColor = OKButton.BackColor = AbortButton.BackColor = ProgramDescription.MasterButtonColor;
+#endif
 
 			// Запуск
 			this.ShowDialog ();
