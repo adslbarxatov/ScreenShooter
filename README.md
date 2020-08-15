@@ -1,4 +1,4 @@
-# ScreenShooter v 1.5.1p
+# ScreenShooter v 1.5.2p
 
 An utility for making screenshots
 

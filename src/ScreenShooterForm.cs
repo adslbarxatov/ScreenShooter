@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
@@ -122,10 +123,7 @@ namespace RD_AAOW
 				{
 				// Справка
 				case Keys.F1:
-					AboutForm af = new AboutForm (al, "https://github.com/adslbarxatov/ScreenShooter",
-						"https://github.com/adslbarxatov/ScreenShooter/releases",
-						"",
-						Localization.GetText ("HelpText", al));
+					ProgramDescription.ShowAbout (false);
 					break;
 
 				// Сохранение
@@ -206,7 +204,7 @@ namespace RD_AAOW
 			SFDialog.ShowDialog ();
 			}
 
-		private void SFDialog_FileOk (object sender, System.ComponentModel.CancelEventArgs e)
+		private void SFDialog_FileOk (object sender, CancelEventArgs e)
 			{
 			// Обработка параметров
 			try
