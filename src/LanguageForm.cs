@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace RD_AAOW
@@ -47,14 +48,14 @@ namespace RD_AAOW
 			}
 
 		// Выбор размера
-		private void BOK_Click (object sender, System.EventArgs e)
+		private void BOK_Click (object sender, EventArgs e)
 			{
 			Localization.CurrentLanguage = (SupportedLanguages)LanguagesCombo.SelectedIndex;
 			this.Close ();
 			}
 
 		// Отмена
-		private void BCancel_Click (object sender, System.EventArgs e)
+		private void BCancel_Click (object sender, EventArgs e)
 			{
 			this.Close ();
 			}
