@@ -10,7 +10,7 @@ namespace RD_AAOW
 	/// <summary>
 	/// Начальная форма программы
 	/// </summary>
-	public partial class ScreenShooterForm:Form
+	public partial class ScreenShooterForm: Form
 		{
 		// Параметры
 		private Point start, end;
@@ -66,7 +66,7 @@ namespace RD_AAOW
 		// Движение мыши
 		private void MainForm_MouseMove (object sender, MouseEventArgs e)
 			{
-			if (e.Button != System.Windows.Forms.MouseButtons.Left)
+			if (e.Button != MouseButtons.Left)
 				return;
 
 			// Обновление рамки выделения
@@ -106,7 +106,7 @@ namespace RD_AAOW
 		// Команды рамки выделения
 		private void MainSelection_MouseDown (object sender, MouseEventArgs e)
 			{
-			if (e.Button == System.Windows.Forms.MouseButtons.Right)
+			if (e.Button == MouseButtons.Right)
 				{
 				SaveImage ();
 				return;
@@ -148,8 +148,8 @@ namespace RD_AAOW
 						{
 						if (GetPointedWindowBounds (MousePosition.X, MousePosition.Y))
 							{
-							MainSelection.Text = "(" + MainSelection.Left.ToString () + "; " + MainSelection.Top.ToString () + ") (" +
-								MainSelection.Width.ToString () + " x " + MainSelection.Height.ToString () + ")";
+							MainSelection.Text = "(" + MainSelection.Left.ToString () + "; " + MainSelection.Top.ToString () +
+								") (" + MainSelection.Width.ToString () + " x " + MainSelection.Height.ToString () + ")";
 							MainSelection.Visible = true;
 							}
 						}
@@ -299,14 +299,6 @@ namespace RD_AAOW
 			public Int32 Top;
 			public Int32 Right;
 			public Int32 Bottom;
-
-			/*public RECT (Int32 LV, Int32 TV, Int32 RV, Int32 BV)
-				{
-				Left = LV;
-				Top = TV;
-				Right = RV;
-				Bottom = BV;
-				}*/
 			}
 
 		[DllImport ("User32.dll")]

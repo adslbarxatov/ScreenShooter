@@ -120,6 +120,9 @@
   <data name="AbortButtonText" xml:space="preserve">
     <value>Отмена</value>
   </data>
+  <data name="AlreadyStarted" xml:space="preserve">
+    <value>Программа {0:S} уже запущена</value>
+  </data>
   <data name="HelpText" xml:space="preserve">
     <value>Управление
 
