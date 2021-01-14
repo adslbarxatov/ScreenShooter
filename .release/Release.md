@@ -1,4 +1,2 @@
-_Changes for v 1.6.3_:
-- Fixed bug in Policy acception interface that disallowed to accept it in offline mode at first start;
-- Added protection against multiple launch;
-- Cumulative changes applied
+_Changes for v 1.6.4_:
+- Added ability to 'ask developer' via E-mail for help, or send wish, advice or bug report
