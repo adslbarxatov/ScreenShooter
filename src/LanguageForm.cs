@@ -7,8 +7,12 @@ namespace RD_AAOW
 	/// <summary>
 	/// Форма обеспечивает возможность изменения языка интерфейса
 	/// </summary>
-	public partial class LanguageForm: Form
+	public partial class LanguageForm:Form
 		{
+		// Цветовая схема
+		private Color backColor = Color.FromArgb (224, 224, 224);
+		private Color foreColor = Color.FromArgb (32, 32, 32);
+
 		/// <summary>
 		/// Конструктор. Запускает форму выбора размера
 		/// </summary>
@@ -29,22 +33,36 @@ namespace RD_AAOW
 				}
 
 			this.Text = ProgramDescription.AssemblyTitle;
-			Label01.Text = string.Format (Localization.GetText ("LanguageSelectorMessage", CurrentInterfaceLanguage), LanguagesCombo.Text);
+			Label01.Text = string.Format (Localization.GetText ("LanguageSelectorMessage", CurrentInterfaceLanguage),
+				LanguagesCombo.Text);
 			OKButton.Text = Localization.GetText ("NextButtonText", CurrentInterfaceLanguage);
 			AbortButton.Text = Localization.GetText ("AbortButtonText", CurrentInterfaceLanguage);
 
-#if SIMPLE_HWE
-			this.BackColor = Color.FromKnownColor (KnownColor.Control);
-			Label01.ForeColor = LanguagesCombo.ForeColor = OKButton.ForeColor = AbortButton.ForeColor = Color.FromArgb (0, 0, 0);
-			LanguagesCombo.BackColor = OKButton.BackColor = AbortButton.BackColor = Color.FromKnownColor (KnownColor.Control);
-#else
-			this.BackColor = Color.FromArgb ((3 * ProgramDescription.MasterBackColor.R + 128) / 4,
-				(3 * ProgramDescription.MasterBackColor.G + 128) / 4,
-				(3 * ProgramDescription.MasterBackColor.B + 128) / 4);
-			Label01.ForeColor = LanguagesCombo.ForeColor = OKButton.ForeColor = AbortButton.ForeColor =
-				ProgramDescription.MasterTextColor;
-			LanguagesCombo.BackColor = OKButton.BackColor = AbortButton.BackColor = ProgramDescription.MasterButtonColor;
-#endif
+			this.BackColor = backColor;
+			Label01.ForeColor = LanguagesCombo.ForeColor = OKButton.ForeColor = AbortButton.ForeColor = foreColor;
+			LanguagesCombo.BackColor = OKButton.BackColor = AbortButton.BackColor = backColor;
+
+			// Запуск отрисовки
+			const int roundingSize = 20;
+			Bitmap bm = new Bitmap (this.Width, this.Height);
+			Graphics gr = Graphics.FromImage (bm);
+
+			SolidBrush br = new SolidBrush (this.TransparencyKey);
+			gr.FillRectangle (br, 0, 0, roundingSize / 2, roundingSize / 2);
+			gr.FillRectangle (br, this.Width - roundingSize / 2, 0, roundingSize / 2, roundingSize / 2);
+			gr.FillRectangle (br, 0, this.Height - roundingSize / 2, roundingSize / 2, roundingSize / 2);
+			gr.FillRectangle (br, this.Width - roundingSize / 2, this.Height - roundingSize / 2, roundingSize / 2, roundingSize / 2);
+			br.Dispose ();
+
+			br = new SolidBrush (this.BackColor);
+			gr.FillEllipse (br, 0, 0, roundingSize, roundingSize);
+			gr.FillEllipse (br, this.Width - roundingSize - 1, 0, roundingSize, roundingSize);
+			gr.FillEllipse (br, 0, this.Height - roundingSize - 1, roundingSize, roundingSize);
+			gr.FillEllipse (br, this.Width - roundingSize - 1, this.Height - roundingSize - 1, roundingSize, roundingSize);
+			br.Dispose ();
+			gr.Dispose ();
+
+			this.BackgroundImage = bm;
 
 			// Запуск
 			this.ShowDialog ();
