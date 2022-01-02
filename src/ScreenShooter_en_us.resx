@@ -124,7 +124,7 @@
     <value>{0:S} is already running</value>
   </data>
   <data name="HelpText" xml:space="preserve">
-    <value>Control
+    <value>Controls:
 
 • Left mouse button (hold and move) – screenshot field selection;
 • Left click or Space key (if selection made) – resetting selection;
