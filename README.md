@@ -1,5 +1,5 @@
-# ScreenShooter v 1.8.3
-> PCC: 00056BCE26869C36
+# ScreenShooter v 1.8.37
+> PCC: 000409CFEB4FBEB9
 
 
 An utility for making screenshots

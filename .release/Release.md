@@ -1,3 +1,3 @@
-_Changes for v 1.8.3_:
-- Current updates and improvements applied;
-- App got the scalable icon and the digital signature (only self-signed for now)
+_Changes for v 1.8.37_:
+- Implemented the updates downloading directly from the “About the app” interface. This function requires DPModule. It allows you to download DPModule if it was not previously installed;
+- Current updates and improvements applied
