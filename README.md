@@ -1,5 +1,5 @@
-# ScreenShooter v 1.8.37
-> PCC: 000409CFEB4FBEB9
+# ScreenShooter v 1.9
+> PCC: 000419FC925936F6
 
 
 An utility for making screenshots
@@ -24,7 +24,7 @@ It is recommended to pin application on task panel or attach a hotkey to it
 ## Requirements / Требования
 
 - Windows XP or newer / или новее;
-- [Microsoft .NET Framework 4.0](https://www.microsoft.com/en-us/download/details.aspx?id=17718).
+- [Microsoft .NET Framework 4.0](https://microsoft.com/en-us/download/details.aspx?id=17718).
 
 Interface languages / языки интерфейса: ru_ru, en_us.
 
