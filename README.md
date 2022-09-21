@@ -9,12 +9,12 @@ An utility for making screenshots
 
 #
 
-Simple tool for making and saving screenshots. Launch the application and press ```F1``` to get user manual.
+Simple tool for making and saving screenshots. Launch the application and press `F1` to get user manual.
 It is recommended to pin application on task panel or attach a hotkey to it
 
 #
 
-Простой инструмент для создания и сохранения скриншотов. Запустите приложение и нажмите ```F1``` для получения инструкций.
+Простой инструмент для создания и сохранения скриншотов. Запустите приложение и нажмите `F1` для получения инструкций.
 Рекомендуется закрепить приложение на панели задач или назначить ему горячую клавишу.
 
 &nbsp;
@@ -32,7 +32,7 @@ Interface languages / языки интерфейса: ru_ru, en_us.
 
 
 
-## [Development policy and EULA / Политика разработки и EULA](https://adslbarxatov.github.io/ADP)
+## [Development policy and EULA](https://adslbarxatov.github.io/ADP) / [Политика разработки и EULA](https://adslbarxatov.github.io/ADP/ru)
 
 This Policy (ADP), its positions, conclusion, EULA and application methods
 describes general rules that we follow in all of our development processes, released applications and implemented ideas.
