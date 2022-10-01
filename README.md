@@ -1,5 +1,5 @@
-# ScreenShooter v 1.9
-> PCC: 000419FC925936F6
+﻿# ScreenShooter v 2.0
+> PCC: 000351D09212A3D2
 
 
 An utility for making screenshots
@@ -12,10 +12,30 @@ An utility for making screenshots
 Simple tool for making and saving screenshots. Launch the application and press `F1` to get user manual.
 It is recommended to pin application on task panel or attach a hotkey to it
 
+## Controls:
+
+- Left mouse button (hold and move) – screenshot field selection;
+- Left click or `[Space]` key (if selection made) – resetting selection;
+- `[Space]` (if selection absent) – selection of window that is pointed by mouse;
+- Right mouse button or `[Enter]` key – image saving;
+- `[F1]` – displaying of this quick manual;
+- `[Q]`, `[X]`, `[Esc]`, `[Alt]` + `[F4]` – exiting application;
+- `[L]` – changing of interface language
+
 #
 
 Простой инструмент для создания и сохранения скриншотов. Запустите приложение и нажмите `F1` для получения инструкций.
 Рекомендуется закрепить приложение на панели задач или назначить ему горячую клавишу.
+
+## Управление:
+
+- Левая кнопка мыши (нажать и тянуть) – выбор области снимка;
+- Левый щелчок или клавиша `[Пробел]` (при наличии выделения) – сброс выделения;
+- `[Пробел]` (при отсутствии выделения) – выделение окна, на которое указывает курсор;
+- Правая кнопка мыши или клавиша `[Enter]` – сохранение изображения;
+- `[F1]` – вызов этого справочного сообщения;
+- `[Q]`, `[X]`, `[Esc]`, `[Alt]` + `[F4]` – выход из программы;
+- `[L]` – смена языка интерфейса
 
 &nbsp;
 
@@ -23,8 +43,8 @@ It is recommended to pin application on task panel or attach a hotkey to it
 
 ## Requirements / Требования
 
-- Windows XP or newer / или новее;
-- [Microsoft .NET Framework 4.0](https://microsoft.com/en-us/download/details.aspx?id=17718).
+- Windows 7 or newer / или новее;
+- [Microsoft .NET Framework 4.8](https://go.microsoft.com/fwlink/?linkid=2088631).
 
 Interface languages / языки интерфейса: ru_ru, en_us.
 

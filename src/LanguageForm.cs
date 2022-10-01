@@ -7,7 +7,7 @@ namespace RD_AAOW
 	/// <summary>
 	/// Форма обеспечивает возможность изменения языка интерфейса
 	/// </summary>
-	public partial class LanguageForm:Form
+	public partial class LanguageForm: Form
 		{
 		// Цветовая схема
 		private Color backColor = Color.FromArgb (224, 224, 224);
@@ -51,14 +51,16 @@ namespace RD_AAOW
 			gr.FillRectangle (br, 0, 0, roundingSize / 2, roundingSize / 2);
 			gr.FillRectangle (br, this.Width - roundingSize / 2, 0, roundingSize / 2, roundingSize / 2);
 			gr.FillRectangle (br, 0, this.Height - roundingSize / 2, roundingSize / 2, roundingSize / 2);
-			gr.FillRectangle (br, this.Width - roundingSize / 2, this.Height - roundingSize / 2, roundingSize / 2, roundingSize / 2);
+			gr.FillRectangle (br, this.Width - roundingSize / 2, this.Height - roundingSize / 2, 
+				roundingSize / 2, roundingSize / 2);
 			br.Dispose ();
 
 			br = new SolidBrush (this.BackColor);
 			gr.FillEllipse (br, 0, 0, roundingSize, roundingSize);
 			gr.FillEllipse (br, this.Width - roundingSize - 1, 0, roundingSize, roundingSize);
 			gr.FillEllipse (br, 0, this.Height - roundingSize - 1, roundingSize, roundingSize);
-			gr.FillEllipse (br, this.Width - roundingSize - 1, this.Height - roundingSize - 1, roundingSize, roundingSize);
+			gr.FillEllipse (br, this.Width - roundingSize - 1, this.Height - roundingSize - 1, 
+				roundingSize, roundingSize);
 			br.Dispose ();
 			gr.Dispose ();
 
