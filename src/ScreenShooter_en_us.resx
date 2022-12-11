@@ -131,10 +131,6 @@
 • Q, X, Esc, Alt + F4 – exiting application;
 • L – changing of interface language</value>
   </data>
-  <data name="LanguageSelectorMessage" xml:space="preserve">
-    <value>Current interface language is {0:S}.
-Select new language:</value>
-  </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>OK</value>
   </data>

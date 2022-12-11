@@ -131,10 +131,6 @@
 • Q, X, Esc, Alt + F4 – выход из программы;
 • L – смена языка интерфейса</value>
   </data>
-  <data name="LanguageSelectorMessage" xml:space="preserve">
-    <value>Текущий язык интерфейса: {0:S}.
-Выберите новый язык:</value>
-  </data>
   <data name="NextButtonText" xml:space="preserve">
     <value>ОК</value>
   </data>

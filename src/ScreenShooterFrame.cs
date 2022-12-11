@@ -123,7 +123,7 @@ namespace RD_AAOW
 				{
 				// Справка
 				case Keys.F1:
-					ProgramDescription.ShowAbout (false);
+					RDGenerics.ShowAbout (false);
 					break;
 
 				// Сохранение
@@ -148,8 +148,9 @@ namespace RD_AAOW
 						{
 						if (GetPointedWindowBounds (MousePosition.X, MousePosition.Y))
 							{
-							MainSelection.Text = "(" + MainSelection.Left.ToString () + "; " + MainSelection.Top.ToString () +
-								") (" + MainSelection.Width.ToString () + " x " + MainSelection.Height.ToString () + ")";
+							MainSelection.Text = "(" + MainSelection.Left.ToString () + "; " +
+								MainSelection.Top.ToString () + ") (" + MainSelection.Width.ToString () +
+								" x " + MainSelection.Height.ToString () + ")";
 							MainSelection.Visible = true;
 							}
 						}
@@ -157,10 +158,12 @@ namespace RD_AAOW
 
 				// Смена языка интерфейса
 				case Keys.L:
-					LanguageForm lf = new LanguageForm (al);
-
-					al = Localization.CurrentLanguage;
-					Localize ();
+					/*LanguageForm lf = new LanguageForm (al);*/
+					if (RDGenerics.MessageBox (al) == RDMessageButtons.ButtonOne)
+						{
+						al = Localization.CurrentLanguage;
+						Localize ();
+						}
 					break;
 				}
 			}
@@ -230,8 +233,9 @@ namespace RD_AAOW
 				}
 			catch
 				{
-				MessageBox.Show (Localization.GetText ("SaveFailure", al),
-					ProgramDescription.AssemblyTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				/*MessageBox.Shw (Localization.GetText ("SaveFailure", al),
+					ProgramDescription.AssemblyTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);*/
+				RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning, "SaveFailure");
 				}
 
 			// Завершение
