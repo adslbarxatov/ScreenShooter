@@ -16,7 +16,7 @@ namespace RD_AAOW
 		private Point start, end;
 		private Graphics g;
 		private Bitmap b;
-		private SupportedLanguages al = Localization.CurrentLanguage;
+		/*private SupportedLanguages al = Localization.CurrentLanguage;*/
 
 		/// <summary>
 		/// Главная форма программы
@@ -38,8 +38,8 @@ namespace RD_AAOW
 		// Метод выполняет локализацию приложения
 		private void Localize ()
 			{
-			SFDialog.Title = Localization.GetText ("SaveImageTitle", al);
-			SFDialog.Filter = Localization.GetText ("SaveImageFilter", al);
+			SFDialog.Title = Localization.GetText ("SaveImageTitle");
+			SFDialog.Filter = Localization.GetText ("SaveImageFilter");
 			}
 
 		// Нажатие мыши
@@ -158,12 +158,11 @@ namespace RD_AAOW
 
 				// Смена языка интерфейса
 				case Keys.L:
-					/*LanguageForm lf = new LanguageForm (al);*/
-					if (RDGenerics.MessageBox (al) == RDMessageButtons.ButtonOne)
-						{
-						al = Localization.CurrentLanguage;
+					if (RDGenerics.MessageBox () == RDMessageButtons.ButtonOne)
+						/*{
+						al = Localization.CurrentLanguage;*/
 						Localize ();
-						}
+					/*}*/
 					break;
 				}
 			}
