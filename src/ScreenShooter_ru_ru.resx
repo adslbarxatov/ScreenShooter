@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AbortButtonText" xml:space="preserve">
-    <value>Отмена</value>
-  </data>
   <data name="HelpText" xml:space="preserve">
     <value>Управление:
 
@@ -130,9 +127,6 @@
 • F1 – вызов этого справочного сообщения;
 • Q, X, Esc, Alt + F4 – выход из программы;
 • L – смена языка интерфейса</value>
-  </data>
-  <data name="NextButtonText" xml:space="preserve">
-    <value>ОК</value>
   </data>
   <data name="SaveFailure" xml:space="preserve">
     <value>Не удалось сохранить изображение. Возможно, целевая директория недоступна для записи</value>
