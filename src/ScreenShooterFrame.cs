@@ -16,7 +16,6 @@ namespace RD_AAOW
 		private Point start, end;
 		private Graphics g;
 		private Bitmap b;
-		/*private SupportedLanguages al = Localization.CurrentLanguage;*/
 
 		/// <summary>
 		/// Главная форма программы
@@ -159,10 +158,7 @@ namespace RD_AAOW
 				// Смена языка интерфейса
 				case Keys.L:
 					if (RDGenerics.MessageBox () == RDMessageButtons.ButtonOne)
-						/*{
-						al = Localization.CurrentLanguage;*/
 						Localize ();
-					/*}*/
 					break;
 				}
 			}
@@ -232,8 +228,6 @@ namespace RD_AAOW
 				}
 			catch
 				{
-				/*MessageBox.Shw (Localization.GetText ("SaveFailure", al),
-					ProgramDescription.AssemblyTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);*/
 				RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning, "SaveFailure");
 				}
 
