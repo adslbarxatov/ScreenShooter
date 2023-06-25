@@ -157,7 +157,7 @@ namespace RD_AAOW
 
 				// Смена языка интерфейса
 				case Keys.L:
-					if (RDGenerics.MessageBox () == RDMessageButtons.ButtonOne)
+					if (RDGenerics.MessageBox ())
 						Localize ();
 					break;
 				}
