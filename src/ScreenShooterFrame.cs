@@ -193,9 +193,14 @@ namespace RD_AAOW
 			if (b != null)
 				b.Dispose ();
 			b = new Bitmap (end.X - start.X + 1, end.Y - start.Y + 1);
-
 			g = Graphics.FromImage (b);
+
+			// На Windows 10 следует убирать окно ScreenShooter на задний план.
+			// Иначе оно попадает на снимок
+			this.SendToBack ();
 			g.CopyFromScreen (start.X, start.Y, 0, 0, b.Size);
+			this.BringToFront ();
+
 			g.Dispose ();
 
 			// Запрос имени файла (делается после снимка, чтобы не перекрывать экран)
