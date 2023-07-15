@@ -1,4 +1,4 @@
-﻿# ScreenShooter v 2.3.2
+# ScreenShooter v 2.3.2
 > PCC: 0002FBBDFD7D4074
 
 
