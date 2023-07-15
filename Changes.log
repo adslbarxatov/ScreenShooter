@@ -1,5 +1,9 @@
 Screen shooter: changes log
 
+Version 2.3.2:
+• Rewritten settings operator: it should fix problems with requiring administrator rights;
+• Updated the interface of message boxes
+
 Version 2.3:
 • Fixed images overlay with screen shooting frame on Windows 10
 

@@ -233,7 +233,7 @@ namespace RD_AAOW
 				}
 			catch
 				{
-				RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning, "SaveFailure");
+				RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center, "SaveFailure");
 				}
 
 			// Завершение
