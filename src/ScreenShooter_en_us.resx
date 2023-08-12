@@ -128,9 +128,6 @@
 • Q, X, Esc, Alt + F4 – exiting application;
 • L – changing of interface language</value>
   </data>
-  <data name="SaveFailure" xml:space="preserve">
-    <value>Failed to save image. Seems like target directory is not writable</value>
-  </data>
   <data name="SaveImageFilter" xml:space="preserve">
     <value>PNG image|*.png|JPEG photo|*.jpeg|BMP image|*.bmp|GIF image|*.gif</value>
   </data>

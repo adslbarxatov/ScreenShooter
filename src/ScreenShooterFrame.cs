@@ -26,6 +26,8 @@ namespace RD_AAOW
 
 			// Настройка
 			this.Text = ProgramDescription.AssemblyTitle;
+			if (!RDGenerics.IsRegistryAccessible)
+				this.Text += Localization.GetDefaultText (LzDefaultTextValues.Message_LimitedFunctionality);
 
 			this.Left = this.Top = 0;
 			this.Width = Screen.PrimaryScreen.Bounds.Width;
@@ -233,7 +235,10 @@ namespace RD_AAOW
 				}
 			catch
 				{
-				RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center, "SaveFailure");
+				/*RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center, "SaveFailure");*/
+				RDGenerics.MessageBox (RDMessageTypes.Warning_Center,
+					Localization.GetFileProcessingMessage (SFDialog.FileName,
+					LzFileProcessingMessageTypes.Save_Failure));
 				}
 
 			// Завершение

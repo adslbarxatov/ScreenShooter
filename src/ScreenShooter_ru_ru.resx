@@ -128,9 +128,6 @@
 • Q, X, Esc, Alt + F4 – выход из программы;
 • L – смена языка интерфейса</value>
   </data>
-  <data name="SaveFailure" xml:space="preserve">
-    <value>Не удалось сохранить изображение. Возможно, целевая директория недоступна для записи</value>
-  </data>
   <data name="SaveImageFilter" xml:space="preserve">
     <value>Изображение PNG|*.png|Фотография JPEG|*.jpeg|Рисунок BMP|*.bmp|Рисунок GIF|*.gif</value>
   </data>
