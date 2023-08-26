@@ -235,7 +235,6 @@ namespace RD_AAOW
 				}
 			catch
 				{
-				/*RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center, "SaveFailure");*/
 				RDGenerics.MessageBox (RDMessageTypes.Warning_Center,
 					Localization.GetFileProcessingMessage (SFDialog.FileName,
 					LzFileProcessingMessageTypes.Save_Failure));
