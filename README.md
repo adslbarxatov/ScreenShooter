@@ -1,42 +1,42 @@
-# ScreenShooter v 2.3.11
-> PCC: 000324D3E0924B67
+# ScreenShooter
 
+## Description
 
-An utility for making screenshots
+A tool for making screenshots. Supports shooting of screen, windows and elements of applications.
 
----
+Start the application and press `F1` to get the short guide.
+It is recommended to pin application on task panel or attach a hotkey to it.
 
-Утилита для создания скриншотов
-
-&nbsp;
-
-
-
-Simple tool for making and saving screenshots. Launch the application and press `F1` to get user manual.
-It is recommended to pin application on task panel or attach a hotkey to it
-
-## Controls:
+***Controls:***
 
 - Left mouse button (hold and move) – screenshot field selection;
 - Left click or `[Space]` key (if selection made) – resetting selection;
 - `[Space]` (if selection absent) – selection of window that is pointed by mouse;
 - Right mouse button or `[Enter]` key – image saving;
-- `[F1]` – displaying of this quick manual;
+- `[F1]`, `[?]` – displaying of this quick manual;
+- `[F2]` – displaying of the app about window;
 - `[Q]`, `[X]`, `[Esc]`, `[Alt]` + `[F4]` – exiting application;
 - `[L]` – changing of interface language
 
----
+&nbsp;
 
-Простой инструмент для создания и сохранения скриншотов. Запустите приложение и нажмите `F1` для получения инструкций.
+
+
+## Описание
+
+Инструмент для создания скриншотов. Поддерживает снимки экрана, окон и элементов приложений.
+
+Запустите приложение и нажмите `F1` для получения короткой инструкции.
 Рекомендуется закрепить приложение на панели задач или назначить ему горячую клавишу.
 
-## Управление:
+***Управление:***
 
 - Левая кнопка мыши (нажать и тянуть) – выбор области снимка;
 - Левый щелчок или клавиша `[Пробел]` (при наличии выделения) – сброс выделения;
 - `[Пробел]` (при отсутствии выделения) – выделение окна, на которое указывает курсор;
 - Правая кнопка мыши или клавиша `[Enter]` – сохранение изображения;
-- `[F1]` – вызов этого справочного сообщения;
+- `[F1]`, `[?]` – вызов этого справочного сообщения;
+- `[F2]` – вызов окна сведений о приложении;
 - `[Q]`, `[X]`, `[Esc]`, `[Alt]` + `[F4]` – выход из программы;
 - `[L]` – смена языка интерфейса
 

@@ -124,6 +124,11 @@ namespace RD_AAOW
 				{
 				// Справка
 				case Keys.F1:
+				case Keys.OemQuestion:
+					RDGenerics.LocalizedMessageBox (RDMessageTypes.Success_Left, "HelpKeysText");
+					break;
+
+				case Keys.F2:
 					RDGenerics.ShowAbout (false);
 					break;
 
