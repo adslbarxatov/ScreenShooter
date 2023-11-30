@@ -2,21 +2,8 @@
 
 ## Description
 
-A tool for making screenshots. Supports shooting of screen, windows and elements of applications.
-
-Start the application and press `F1` to get the short guide.
-It is recommended to pin application on task panel or attach a hotkey to it.
-
-***Controls:***
-
-- Left mouse button (hold and move) – screenshot field selection;
-- Left click or `[Space]` key (if selection made) – resetting selection;
-- `[Space]` (if selection absent) – selection of window that is pointed by mouse;
-- Right mouse button or `[Enter]` key – image saving;
-- `[F1]`, `[?]` – displaying of this quick manual;
-- `[F2]` – displaying of the app about window;
-- `[Q]`, `[X]`, `[Esc]`, `[Alt]` + `[F4]` – exiting application;
-- `[L]` – changing of interface language
+A tool for making screenshots.
+Detailed description of the app is available on [its own page](https://adslbarxatov.github.io/ScreenShooter)
 
 &nbsp;
 
@@ -24,21 +11,8 @@ It is recommended to pin application on task panel or attach a hotkey to it.
 
 ## Описание
 
-Инструмент для создания скриншотов. Поддерживает снимки экрана, окон и элементов приложений.
-
-Запустите приложение и нажмите `F1` для получения короткой инструкции.
-Рекомендуется закрепить приложение на панели задач или назначить ему горячую клавишу.
-
-***Управление:***
-
-- Левая кнопка мыши (нажать и тянуть) – выбор области снимка;
-- Левый щелчок или клавиша `[Пробел]` (при наличии выделения) – сброс выделения;
-- `[Пробел]` (при отсутствии выделения) – выделение окна, на которое указывает курсор;
-- Правая кнопка мыши или клавиша `[Enter]` – сохранение изображения;
-- `[F1]`, `[?]` – вызов этого справочного сообщения;
-- `[F2]` – вызов окна сведений о приложении;
-- `[Q]`, `[X]`, `[Esc]`, `[Alt]` + `[F4]` – выход из программы;
-- `[L]` – смена языка интерфейса
+Инструмент для создания скриншотов.
+Подробное описание приложения доступно на [отдельной странице](https://adslbarxatov.github.io/ScreenShooter/ru)
 
 &nbsp;
 
