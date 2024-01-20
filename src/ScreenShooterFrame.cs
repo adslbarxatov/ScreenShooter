@@ -27,7 +27,7 @@ namespace RD_AAOW
 			// Настройка
 			this.Text = ProgramDescription.AssemblyTitle;
 			if (!RDGenerics.IsRegistryAccessible)
-				this.Text += Localization.GetDefaultText (LzDefaultTextValues.Message_LimitedFunctionality);
+				this.Text += RDLocale.GetDefaultText (RDLDefaultTexts.Message_LimitedFunctionality);
 
 			this.Left = this.Top = 0;
 			this.Width = Screen.PrimaryScreen.Bounds.Width;
@@ -39,8 +39,8 @@ namespace RD_AAOW
 		// Метод выполняет локализацию приложения
 		private void Localize ()
 			{
-			SFDialog.Title = Localization.GetText ("SaveImageTitle");
-			SFDialog.Filter = Localization.GetText ("SaveImageFilter");
+			SFDialog.Title = RDLocale.GetText ("SaveImageTitle");
+			SFDialog.Filter = RDLocale.GetText ("SaveImageFilter");
 			}
 
 		// Нажатие мыши
@@ -241,8 +241,10 @@ namespace RD_AAOW
 			catch
 				{
 				RDGenerics.MessageBox (RDMessageTypes.Warning_Center,
-					Localization.GetFileProcessingMessage (SFDialog.FileName,
-					LzFileProcessingMessageTypes.Save_Failure));
+					/*Localization.GetFileProcessingMessage (SFDialog.FileName,
+					LzFileProcessingMessageTypes.Save_Failure)*/
+					string.Format (RDLocale.GetDefaultText (RDLDefaultTexts.Message_SaveFailure_Fmt),
+					SFDialog.FileName));
 				}
 
 			// Завершение
