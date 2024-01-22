@@ -1,5 +1,14 @@
 Screen shooter: changes log
 
+ToDo (by Evgeniy Kotlyar):
+- Upgrade the app to a autostarting service;
+- Implement in-app notifications based on screenshots:
+  - using the internal directory with autoscanning;
+  - using the timer selection during the image saving;
+  - using the files naming with the notification comments;
+- Make the desktop saving default;
+- Use the tray icon menu for other functions
+
 Version 2.4:
 • Core updates have been applied
 
