@@ -124,15 +124,42 @@
 • Левый щелчок или клавиша [Пробел] (при наличии выделения) – сброс выделения;
 • Клавиша [Пробел] (при отсутствии выделения) – выделение окна, на которое указывает курсор;
 • Правая кнопка мыши или клавиша [Enter] – сохранение изображения;
-• [F1], [?] – вызов этого справочного сообщения;
-• [F2] – вызов окна сведений о приложении;
-• [Q], [X], [Esc], [Alt] + [F4] – выход из программы;
-• [L] – смена языка интерфейса</value>
+
+• [Q], [X] – выход из приложения;
+• [Esc], [H] – сворачивание приложения в трей;
+• [P], [S] – настройка приложения;
+• [F2] – отображение окна «О приложении»;
+• [L] – смена языка интерфейса;
+• [F1], [?] – отображение данного краткого руководства</value>
+  </data>
+  <data name="ImageSaved" xml:space="preserve">
+    <value>Скриншот сохранён</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Path00" xml:space="preserve">
+    <value>На рабочем столе</value>
+  </data>
+  <data name="Path01" xml:space="preserve">
+    <value>На рабочем столе в отдельной папке</value>
+  </data>
+  <data name="Path02" xml:space="preserve">
+    <value>В папке «Изображения»</value>
+  </data>
+  <data name="Path03" xml:space="preserve">
+    <value>В папке «Изображения» в отдельной подпапке</value>
   </data>
   <data name="SaveImageFilter" xml:space="preserve">
     <value>Изображение PNG|*.png|Фотография JPEG|*.jpeg|Рисунок BMP|*.bmp|Рисунок GIF|*.gif</value>
   </data>
   <data name="SaveImageTitle" xml:space="preserve">
     <value>Укажите путь для сохранения изображения</value>
+  </data>
+  <data name="ScreenshotsPath" xml:space="preserve">
+    <value>Где следует сохранять скриншоты:</value>
+  </data>
+  <data name="ScreenshotsType" xml:space="preserve">
+    <value>Тип изображения:</value>
   </data>
 </root>

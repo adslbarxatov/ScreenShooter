@@ -1,5 +1,5 @@
 # Screen shooter: user guide
-> **ƒ** &nbsp;RD AAOW FDL; 1.12.2023; 2:02
+> **ƒ** &nbsp;RD AAOW FDL; 25.02.2024; 2:16
 
 
 
@@ -21,11 +21,14 @@ It is recommended to pin the app on the task panel or attach a hotkey to it.
 
 ***Controls:***
 
-- `Left mouse button` (hold and move) – screenshot field selection;
-- `Left mouse button` (click) or `[Space]` key (if selection made) – resetting selection;
-- `[Space]` (if selection absent) – selection of window that is pointed by mouse;
-- `Right mouse button` (click) or `[Enter]` key – image saving;
-- `[F1]`, `[?]` – displaying of this quick manual;
-- `[F2]` – displaying of the app about window;
-- `[Q]`, `[X]`, `[Esc]`, `[Alt]` + `[F4]` – exiting application;
-- `[L]` – changing of interface language
+- `Left mouse button` (hold and move) – selection of screenshot field;
+- `Left click` or `Space` key (if selection made) – resetting the selection;
+- `Space` key (if selection absent) – selection of window that is pointed by mouse;
+- `Right mouse button` or `Enter` key – image saving;
+
+- `Q`, `X` – exiting the application;
+- `Esc`, `H` – minimize the application to tray;
+- `P`, `S` – application settings;
+- `F2` – displaying of the app about window;
+- `L` – changing of interface language;
+- `F1`, `?` – displaying of this quick guide

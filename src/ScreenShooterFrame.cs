@@ -1,7 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Imaging;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -17,10 +16,18 @@ namespace RD_AAOW
 		private Graphics g;
 		private Bitmap b;
 
+		// Управление окном
+		private const string HideWindowKey = "-h";
+		private bool hideWindow = false;
+		/*private bool closeWindow = false;
+		*/
+		private NotifyIcon ni = new NotifyIcon ();
+
 		/// <summary>
 		/// Главная форма программы
 		/// </summary>
-		public ScreenShooterForm ()
+		/// <param name="Flags">Флаги запуска приложения</param>
+		public ScreenShooterForm (string Flags)
 			{
 			InitializeComponent ();
 
@@ -33,15 +40,52 @@ namespace RD_AAOW
 			this.Width = Screen.PrimaryScreen.Bounds.Width;
 			this.Height = Screen.PrimaryScreen.Bounds.Height;
 
-			Localize ();
+			/*Localize ();
+			*/
+			hideWindow = (Flags == HideWindowKey);
+
+			// Настройка иконки в трее
+			ni.Icon = Properties.ScreenShooter.ScreenShooterTray;
+			ni.Text = ProgramDescription.AssemblyTitle;
+			ni.Visible = true;
+
+			ni.ContextMenu = new ContextMenu ();
+
+			ni.ContextMenu.MenuItems.Add (new MenuItem (RDLocale.GetText ("MenuSettings"),
+				ChangeSettings));
+			ni.ContextMenu.MenuItems.Add (new MenuItem (RDLocale.GetDefaultText
+				(RDLDefaultTexts.Control_InterfaceLanguage).Replace (":", ""), ChangeLanguage));
+			ni.ContextMenu.MenuItems.Add (new MenuItem (RDLocale.GetDefaultText
+				(RDLDefaultTexts.Control_AppAbout), AppAbout));
+			ni.ContextMenu.MenuItems.Add (new MenuItem (RDLocale.GetDefaultText (RDLDefaultTexts.Button_Exit),
+				CloseService));
+			ni.ContextMenu.MenuItems[3].DefaultItem = true;
+
+			ni.MouseDown += ReturnWindow;
 			}
 
-		// Метод выполняет локализацию приложения
+		private void ScreenShooterForm_Shown (object sender, EventArgs e)
+			{
+			if (hideWindow)
+				this.Hide ();
+			/*if (closeWindow)
+				this.Close ();*/
+			}
+
+		private void ScreenShooterForm_FormClosing (object sender, FormClosingEventArgs e)
+			{
+			// Завершение
+			if (ni != null)
+				ni.Visible = false;
+			}
+
+		/* Метод выполняет локализацию приложения
 		private void Localize ()
 			{
 			SFDialog.Title = RDLocale.GetText ("SaveImageTitle");
 			SFDialog.Filter = RDLocale.GetText ("SaveImageFilter");
 			}
+		*/
 
 		// Нажатие мыши
 		private void MainForm_MouseDown (object sender, MouseEventArgs e)
@@ -129,7 +173,7 @@ namespace RD_AAOW
 					break;
 
 				case Keys.F2:
-					RDGenerics.ShowAbout (false);
+					AppAbout (null, null);
 					break;
 
 				// Сохранение
@@ -137,11 +181,21 @@ namespace RD_AAOW
 					SaveImage ();
 					break;
 
-				// Выход
+				// Выход / скрытие окна
 				case Keys.Escape:
+				case Keys.H:
+					this.Hide ();
+					break;
+
 				case Keys.X:
 				case Keys.Q:
 					this.Close ();
+					break;
+
+				// Настройки приложения
+				case Keys.P:
+				case Keys.S:
+					ChangeSettings (null, null);
 					break;
 
 				// Сброс выделения
@@ -164,8 +218,9 @@ namespace RD_AAOW
 
 				// Смена языка интерфейса
 				case Keys.L:
-					if (RDGenerics.MessageBox ())
-						Localize ();
+					/*if (RDGenerics.MessageBox ())
+						Localize ();*/
+					ChangeLanguage (null, null);
 					break;
 				}
 			}
@@ -210,16 +265,19 @@ namespace RD_AAOW
 
 			g.Dispose ();
 
-			// Запрос имени файла (делается после снимка, чтобы не перекрывать экран)
+			/*// Запрос имени файла (делается после снимка, чтобы не перекрывать экран)
 			SFDialog.ShowDialog ();
 			}
 
 		private void SFDialog_FileOk (object sender, CancelEventArgs e)
-			{
-			// Обработка параметров
+			{*/
+
+			// Попытка сохранения
+			string path = ScreenShooterSettings.ScreenshostPath + DateTime.Now.ToString ("yyyy-MM-dd HH-mm-ss") +
+				ScreenShooterSettings.ScreenshostFileExt;
 			try
 				{
-				switch (SFDialog.FilterIndex)
+				/*switch (SFDialog.FilterIndex)
 					{
 					case 1:
 						b.Save (SFDialog.FileName, ImageFormat.Png);
@@ -236,15 +294,16 @@ namespace RD_AAOW
 					case 4:
 						b.Save (SFDialog.FileName, ImageFormat.Gif);
 						break;
-					}
+					}*/
+				b.Save (path, ScreenShooterSettings.ScreenshotsFormat);
+
+				RDGenerics.MessageBox (RDMessageTypes.Success_Center, RDLocale.GetText ("ImageSaved"), 750);
 				}
 			catch
 				{
 				RDGenerics.MessageBox (RDMessageTypes.Warning_Center,
-					/*Localization.GetFileProcessingMessage (SFDialog.FileName,
-					LzFileProcessingMessageTypes.Save_Failure)*/
 					string.Format (RDLocale.GetDefaultText (RDLDefaultTexts.Message_SaveFailure_Fmt),
-					SFDialog.FileName));
+					Path.GetFileName (path)));
 				}
 
 			// Завершение
@@ -300,6 +359,51 @@ namespace RD_AAOW
 			end.Y = r.Bottom - 1;
 
 			return true;
+			}
+
+		// Возврат окна приложения
+		private void ReturnWindow (object sender, MouseEventArgs e)
+			{
+			if (e.Button != MouseButtons.Left)
+				return;
+
+			if (this.Visible)
+				{
+				this.Hide ();
+				}
+			else
+				{
+				this.Show ();
+
+				this.TopMost = true;
+				this.TopMost = false;
+				this.WindowState = FormWindowState.Normal;
+				}
+			}
+
+		// Закрытие службы
+		private void CloseService (object sender, EventArgs e)
+			{
+			this.Close ();
+			}
+
+		// Изменение настроек
+		private void ChangeSettings (object sender, EventArgs e)
+			{
+			ScreenShooterSettings s3 = new ScreenShooterSettings ();
+			s3.Dispose ();
+			}
+
+		// Изменение языка интерфейса
+		private void ChangeLanguage (object sender, EventArgs e)
+			{
+			RDGenerics.MessageBox ();
+			}
+
+		// Информация о программе
+		private void AppAbout (object sender, EventArgs e)
+			{
+			RDGenerics.ShowAbout (false);
 			}
 
 		// Описания, необходимые для получения границ окна

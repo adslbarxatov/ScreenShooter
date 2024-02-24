@@ -120,19 +120,46 @@
   <data name="HelpKeysText" xml:space="preserve">
     <value>Controls:
 
-• Left mouse button (hold and move) – screenshot field selection;
-• Left click or [Space] key (if selection made) – resetting selection;
+• Left mouse button (hold and move) – selection of screenshot field;
+• Left click or [Space] key (if selection made) – resetting the selection;
 • [Space] key (if selection absent) – selection of window that is pointed by mouse;
 • Right mouse button or [Enter] key – image saving;
-• [F1], [?] – displaying of this quick manual;
+
+• [Q], [X] – exiting the application;
+• [Esc], [H] – minimize the application to tray;
+• [P], [S] – application settings;
 • [F2] – displaying of the app about window;
-• [Q], [X], [Esc], [Alt] + [F4] – exiting application;
-• [L] – changing of interface language</value>
+• [L] – changing of interface language;
+• [F1], [?] – displaying of this quick guide</value>
+  </data>
+  <data name="ImageSaved" xml:space="preserve">
+    <value>Screenshot has been saved</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Path00" xml:space="preserve">
+    <value>On the desktop</value>
+  </data>
+  <data name="Path01" xml:space="preserve">
+    <value>On the desktop in a separate directory</value>
+  </data>
+  <data name="Path02" xml:space="preserve">
+    <value>In the “Pictures” directory</value>
+  </data>
+  <data name="Path03" xml:space="preserve">
+    <value>In the “Pictures” directory in a separate subdirectory</value>
   </data>
   <data name="SaveImageFilter" xml:space="preserve">
     <value>PNG image|*.png|JPEG photo|*.jpeg|BMP image|*.bmp|GIF image|*.gif</value>
   </data>
   <data name="SaveImageTitle" xml:space="preserve">
     <value>Specify path for new image</value>
+  </data>
+  <data name="ScreenshotsPath" xml:space="preserve">
+    <value>Where to save screenshots:</value>
+  </data>
+  <data name="ScreenshotsType" xml:space="preserve">
+    <value>Images type:</value>
   </data>
 </root>

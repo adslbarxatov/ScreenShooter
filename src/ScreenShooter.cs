@@ -12,7 +12,7 @@ namespace RD_AAOW
 		/// Конструктор. Описывает точку входа приложения
 		/// </summary>
 		[STAThread]
-		public static void Main ()
+		public static void Main (string[] args)
 			{
 			// Инициализация
 			Application.EnableVisualStyles ();
@@ -32,7 +32,11 @@ namespace RD_AAOW
 			RDGenerics.ShowAbout (true);
 
 			// Запуск
-			Application.Run (new ScreenShooterForm ());
+			if (args.Length > 0)
+				Application.Run (new ScreenShooterForm (args[0]));
+			else
+				Application.Run (new ScreenShooterForm (""));
+
 			}
 		}
 	}

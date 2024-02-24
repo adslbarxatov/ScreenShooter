@@ -1,3 +1,5 @@
-_Changes for v 2.4_:
-- Core updates have been applied;
-- Added a new version of offline help
+_Changes for v 3.0_:
+- App now has the settings window. You can specify the directory for screenshots and their format;
+- Therefore, app will not ask you for saving path every time you do a screenshot;
+- App can now be a service with the “run on startup” option and the tray icon / context menu;
+- Core updates have been applied
