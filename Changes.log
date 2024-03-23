@@ -6,6 +6,9 @@ ToDo (by Evgeniy Kotlyar):
   - using the timer selection during the image saving;
   - using the files naming with the notification comments
 
+Version 3.0.1:
+• Update for XPUN has been applied
+
 Version 3.0:
 • App now has the settings window. You can specify the directory for screenshots and their format;
 • Therefore, app will not ask you for saving path every time you do a screenshot;

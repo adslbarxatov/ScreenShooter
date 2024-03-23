@@ -19,8 +19,6 @@ namespace RD_AAOW
 		// Управление окном
 		private const string HideWindowKey = "-h";
 		private bool hideWindow = false;
-		/*private bool closeWindow = false;
-		*/
 		private NotifyIcon ni = new NotifyIcon ();
 
 		/// <summary>
@@ -40,8 +38,6 @@ namespace RD_AAOW
 			this.Width = Screen.PrimaryScreen.Bounds.Width;
 			this.Height = Screen.PrimaryScreen.Bounds.Height;
 
-			/*Localize ();
-			*/
 			hideWindow = (Flags == HideWindowKey);
 
 			// Настройка иконки в трее
@@ -68,8 +64,6 @@ namespace RD_AAOW
 			{
 			if (hideWindow)
 				this.Hide ();
-			/*if (closeWindow)
-				this.Close ();*/
 			}
 
 		private void ScreenShooterForm_FormClosing (object sender, FormClosingEventArgs e)
@@ -78,14 +72,6 @@ namespace RD_AAOW
 			if (ni != null)
 				ni.Visible = false;
 			}
-
-		/* Метод выполняет локализацию приложения
-		private void Localize ()
-			{
-			SFDialog.Title = RDLocale.GetText ("SaveImageTitle");
-			SFDialog.Filter = RDLocale.GetText ("SaveImageFilter");
-			}
-		*/
 
 		// Нажатие мыши
 		private void MainForm_MouseDown (object sender, MouseEventArgs e)
@@ -218,8 +204,6 @@ namespace RD_AAOW
 
 				// Смена языка интерфейса
 				case Keys.L:
-					/*if (RDGenerics.MessageBox ())
-						Localize ();*/
 					ChangeLanguage (null, null);
 					break;
 				}
@@ -265,36 +249,11 @@ namespace RD_AAOW
 
 			g.Dispose ();
 
-			/*// Запрос имени файла (делается после снимка, чтобы не перекрывать экран)
-			SFDialog.ShowDialog ();
-			}
-
-		private void SFDialog_FileOk (object sender, CancelEventArgs e)
-			{*/
-
 			// Попытка сохранения
 			string path = ScreenShooterSettings.ScreenshostPath + DateTime.Now.ToString ("yyyy-MM-dd HH-mm-ss") +
 				ScreenShooterSettings.ScreenshostFileExt;
 			try
 				{
-				/*switch (SFDialog.FilterIndex)
-					{
-					case 1:
-						b.Save (SFDialog.FileName, ImageFormat.Png);
-						break;
-
-					case 2:
-						b.Save (SFDialog.FileName, ImageFormat.Jpeg);
-						break;
-
-					case 3:
-						b.Save (SFDialog.FileName, ImageFormat.Bmp);
-						break;
-
-					case 4:
-						b.Save (SFDialog.FileName, ImageFormat.Gif);
-						break;
-					}*/
 				b.Save (path, ScreenShooterSettings.ScreenshotsFormat);
 
 				RDGenerics.MessageBox (RDMessageTypes.Success_Center, RDLocale.GetText ("ImageSaved"), 750);
