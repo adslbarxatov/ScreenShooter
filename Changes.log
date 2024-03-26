@@ -6,6 +6,9 @@ ToDo (by Evgeniy Kotlyar):
   - using the timer selection during the image saving;
   - using the files naming with the notification comments
 
+Version 3.0.5:
+• App will now show the hotkeys list at the first start (in addition to the user guide)
+
 Version 3.0.1:
 • Update for XPUN has been applied
 

@@ -36,7 +36,6 @@ namespace RD_AAOW
 				Application.Run (new ScreenShooterForm (args[0]));
 			else
 				Application.Run (new ScreenShooterForm (""));
-
 			}
 		}
 	}

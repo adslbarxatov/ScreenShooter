@@ -1,5 +1,5 @@
 # Screen shooter: user guide
-> **ƒ** &nbsp;RD AAOW FDL; 25.02.2024; 2:16
+> **ƒ** &nbsp;RD AAOW FDL; 27.03.2024; 0:18
 
 
 
@@ -15,9 +15,6 @@
 
 A tool for making screenshots. It supports shooting of screen, windows and elements
 of other applications.
-
-Start the app and press `F1` to get the short guide.
-It is recommended to pin the app on the task panel or attach a hotkey to it.
 
 ***Controls:***
 

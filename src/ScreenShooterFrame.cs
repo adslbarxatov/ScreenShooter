@@ -62,7 +62,9 @@ namespace RD_AAOW
 
 		private void ScreenShooterForm_Shown (object sender, EventArgs e)
 			{
-			if (hideWindow)
+			if (AboutForm.VeryFirstStart)
+				RDGenerics.LocalizedMessageBox (RDMessageTypes.Success_Left, "HelpKeysText");
+			else if (hideWindow)
 				this.Hide ();
 			}
 
