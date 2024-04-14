@@ -6,6 +6,11 @@ ToDo (by Evgeniy Kotlyar):
   - using the timer selection during the image saving;
   - using the files naming with the notification comments
 
+Version 3.1:
+• Updated HypeHelp and Updates checker mechanics: this should fix apps freezing immediately
+  after launch (on some PCs);
+• Updated the HypeHelp links list
+
 Version 3.0.5:
 • App will now show the hotkeys list at the first start (in addition to the user guide)
 
