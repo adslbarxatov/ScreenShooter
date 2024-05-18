@@ -31,7 +31,8 @@ namespace RD_AAOW
 
 			// Настройка
 			this.Text = ProgramDescription.AssemblyTitle;
-			if (!RDGenerics.IsRegistryAccessible)
+			/*if (!RDGenerics.IsRegistryAccessible)*/
+			if (!RDGenerics.AppHasAccessRights (false, true))
 				this.Text += RDLocale.GetDefaultText (RDLDefaultTexts.Message_LimitedFunctionality);
 
 			this.Left = this.Top = 0;
