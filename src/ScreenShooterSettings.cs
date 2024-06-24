@@ -17,7 +17,7 @@ namespace RD_AAOW
 			{
 			get
 				{
-				if (typeIndex < uint.MaxValue)
+				/*if (typeIndex < uint.MaxValue)
 					return typeIndex;
 
 				try
@@ -29,15 +29,19 @@ namespace RD_AAOW
 					typeIndex = 0;
 					}
 
-				return typeIndex;
+				return typeIndex;*/
+				return RDGenerics.GetSettings (typeIndexPar, 0);
 				}
 			set
 				{
-				typeIndex = value;
-				RDGenerics.SetAppSettingsValue ("TypeIndex", typeIndex.ToString ());
+				/*typeIndex = value;
+				RDGenerics.SetAppSettingsValue ("TypeIndex", typeIndex.ToString ());*/
+				RDGenerics.SetSettings (typeIndexPar, value);
 				}
 			}
-		private static uint typeIndex = uint.MaxValue;
+		/*private static uint typeIndex = uint.MaxValue;
+		*/
+		private const string typeIndexPar = "TypeIndex";
 
 		/// <summary>
 		/// Возвращает или задаёт индекс варианта хранения скриншотов
@@ -46,7 +50,7 @@ namespace RD_AAOW
 			{
 			get
 				{
-				if (pathIndex < uint.MaxValue)
+				/*if (pathIndex < uint.MaxValue)
 					return pathIndex;
 
 				try
@@ -58,15 +62,19 @@ namespace RD_AAOW
 					pathIndex = 0;
 					}
 
-				return pathIndex;
+				return pathIndex;*/
+				return RDGenerics.GetSettings (pathIndexPar, 0);
 				}
 			set
 				{
-				pathIndex = value;
-				RDGenerics.SetAppSettingsValue ("PathIndex", pathIndex.ToString ());
+				/*pathIndex = value;
+				RDGenerics.SetAppSettingsValue ("PathIndex", pathIndex.ToString ());*/
+				RDGenerics.SetSettings (pathIndexPar, value);
 				}
 			}
-		private static uint pathIndex = uint.MaxValue;
+		/*private static uint pathIndex = uint.MaxValue;
+		*/
+		private const string pathIndexPar = "PathIndex";
 
 		/// <summary>
 		/// Конструктор. Запускает настройку программы
