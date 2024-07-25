@@ -22,6 +22,8 @@ of other applications.
 - `Left click` or `Space` key (if selection made) – resetting the selection;
 - `Space` key (if selection absent) – selection of window that is pointed by mouse;
 - `Right mouse button` or `Enter` key – image saving;
+- `Shift` + `Enter` keys – image saving with entering its name;
+- `Tab` key – changing of the current screen (if applicable);
 
 - `Q`, `X` – exiting the application;
 - `Esc`, `H` – minimize the application to tray;

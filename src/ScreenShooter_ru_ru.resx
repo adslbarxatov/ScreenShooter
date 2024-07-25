@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EnterTheFileName" xml:space="preserve">
+    <value>
+Введите имя для нового файла:</value>
+  </data>
   <data name="HelpKeysText" xml:space="preserve">
     <value>Управление:
 
@@ -124,6 +128,8 @@
 • Левый щелчок или клавиша [Пробел] (при наличии выделения) – сброс выделения;
 • Клавиша [Пробел] (при отсутствии выделения) – выделение окна, на которое указывает курсор;
 • Правая кнопка мыши или клавиша [Enter] – сохранение изображения;
+• Клавиши [Shift] + [Enter] – сохранение изображения с вводом названия;
+• Клавиша [Tab] – смена текущего экрана (если применимо);
 
 • [Q], [X] – выход из приложения;
 • [Esc], [H] – сворачивание приложения в трей;
@@ -137,6 +143,12 @@
   </data>
   <data name="MenuSettings" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="NamedScreenshotsPath" xml:space="preserve">
+    <value>Где следует сохранять именованные скриншоты:</value>
+  </data>
+  <data name="NotAvailableForSecondaryScreen" xml:space="preserve">
+    <value>Windows не поддерживает эту функцию на неосновных экранах</value>
   </data>
   <data name="Path00" xml:space="preserve">
     <value>На рабочем столе</value>
@@ -157,7 +169,7 @@
     <value>Укажите путь для сохранения изображения</value>
   </data>
   <data name="ScreenshotsPath" xml:space="preserve">
-    <value>Где следует сохранять скриншоты:</value>
+    <value>Где следует сохранять быстрые скриншоты:</value>
   </data>
   <data name="ScreenshotsType" xml:space="preserve">
     <value>Тип изображения:</value>

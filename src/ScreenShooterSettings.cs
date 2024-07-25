@@ -17,64 +17,62 @@ namespace RD_AAOW
 			{
 			get
 				{
-				/*if (typeIndex < uint.MaxValue)
-					return typeIndex;
-
-				try
-					{
-					typeIndex = uint.Parse (RDGenerics.GetAppSettingsValue ("TypeIndex"));
-					}
-				catch
-					{
-					typeIndex = 0;
-					}
-
-				return typeIndex;*/
 				return RDGenerics.GetSettings (typeIndexPar, 0);
 				}
 			set
 				{
-				/*typeIndex = value;
-				RDGenerics.SetAppSettingsValue ("TypeIndex", typeIndex.ToString ());*/
 				RDGenerics.SetSettings (typeIndexPar, value);
 				}
 			}
-		/*private static uint typeIndex = uint.MaxValue;
-		*/
 		private const string typeIndexPar = "TypeIndex";
 
 		/// <summary>
-		/// Возвращает или задаёт индекс варианта хранения скриншотов
+		/// Возвращает или задаёт индекс автоматического варианта хранения скриншотов
 		/// </summary>
-		private static uint PathIndex
+		private static uint UnnamedPathIndex
 			{
 			get
 				{
-				/*if (pathIndex < uint.MaxValue)
-					return pathIndex;
-
-				try
-					{
-					pathIndex = uint.Parse (RDGenerics.GetAppSettingsValue ("PathIndex"));
-					}
-				catch
-					{
-					pathIndex = 0;
-					}
-
-				return pathIndex;*/
-				return RDGenerics.GetSettings (pathIndexPar, 0);
+				return RDGenerics.GetSettings (unnamedPathIndexPar, 0);
 				}
 			set
 				{
-				/*pathIndex = value;
-				RDGenerics.SetAppSettingsValue ("PathIndex", pathIndex.ToString ());*/
-				RDGenerics.SetSettings (pathIndexPar, value);
+				RDGenerics.SetSettings (unnamedPathIndexPar, value);
 				}
 			}
-		/*private static uint pathIndex = uint.MaxValue;
-		*/
-		private const string pathIndexPar = "PathIndex";
+		private const string unnamedPathIndexPar = "PathIndex";
+
+		/// <summary>
+		/// Возвращает или задаёт индекс варианта хранения именованных скриншотов
+		/// </summary>
+		private static uint NamedPathIndex
+			{
+			get
+				{
+				return RDGenerics.GetSettings (namedPathIndexPar, 0);
+				}
+			set
+				{
+				RDGenerics.SetSettings (namedPathIndexPar, value);
+				}
+			}
+		private const string namedPathIndexPar = "NamedPathIndex";
+
+		/// <summary>
+		/// Возвращает или задаёт индекс текущего экрана
+		/// </summary>
+		public static uint CurrentScreen
+			{
+			get
+				{
+				return RDGenerics.GetSettings (currentScreenPar, 0);
+				}
+			set
+				{
+				RDGenerics.SetSettings (currentScreenPar, value);
+				}
+			}
+		private const string currentScreenPar = "CurrentScreen";
 
 		/// <summary>
 		/// Конструктор. Запускает настройку программы
@@ -89,14 +87,28 @@ namespace RD_AAOW
 			this.Text = ProgramDescription.AssemblyTitle;
 
 			for (int i = 0; i < 4; i++)
-				PathCombo.Items.Add (RDLocale.GetText ("Path" + i.ToString ("D2")));
+				{
+				string text = RDLocale.GetText ("Path" + i.ToString ("D2"));
+				NamedPathCombo.Items.Add (text);
+				UnnamedPathCombo.Items.Add (text);
+				}
+
 			try
 				{
-				PathCombo.SelectedIndex = (int)PathIndex;
+				NamedPathCombo.SelectedIndex = (int)NamedPathIndex;
 				}
 			catch
 				{
-				PathCombo.SelectedIndex = 0;
+				NamedPathCombo.SelectedIndex = 0;
+				}
+
+			try
+				{
+				UnnamedPathCombo.SelectedIndex = (int)UnnamedPathIndex;
+				}
+			catch
+				{
+				UnnamedPathCombo.SelectedIndex = 0;
 				}
 
 			TypeCombo.Items.Add ("PNG");
@@ -112,7 +124,8 @@ namespace RD_AAOW
 				TypeCombo.SelectedIndex = 0;
 				}
 
-			ScreenshotsPath.Text = RDLocale.GetText ("ScreenshotsPath");
+			NScreenshotsPath.Text = RDLocale.GetText ("NamedScreenshotsPath");
+			UScreenshotsPath.Text = RDLocale.GetText ("UnnamedScreenshotsPath");
 			ScreenshotsType.Text = RDLocale.GetText ("ScreenshotsType");
 
 			// Запуск
@@ -129,8 +142,12 @@ namespace RD_AAOW
 		private void SaveSettings_Click (object sender, EventArgs e)
 			{
 			// Сохранение настроек и создание требования к реинициализации значений
-			PathIndex = (uint)PathCombo.SelectedIndex;
-			screenshostPath = "";
+			NamedPathIndex = (uint)NamedPathCombo.SelectedIndex;
+			namedScreenshotsPath = "";
+
+			UnnamedPathIndex = (uint)UnnamedPathCombo.SelectedIndex;
+			unnamedScreenshotsPath = "";
+
 			TypeIndex = (uint)TypeCombo.SelectedIndex;
 			screenshotsFormat = ImageFormat.Exif;
 
@@ -138,47 +155,96 @@ namespace RD_AAOW
 			}
 
 		/// <summary>
-		/// Возвращает путь для сохранения изображений
+		/// Возвращает путь для автоматического сохранения изображений
 		/// </summary>
-		public static string ScreenshostPath
+		public static string UnnamedScreenshotsPath
 			{
 			get
 				{
-				if (!string.IsNullOrWhiteSpace (screenshostPath))
-					return screenshostPath;
+				if (!string.IsNullOrWhiteSpace (unnamedScreenshotsPath))
+					return unnamedScreenshotsPath;
 
 				// Сборка пути
-				switch (PathIndex)
+				switch (UnnamedPathIndex)
 					{
 					case 0:
 					case 1:
 					default:
-						screenshostPath = Environment.GetFolderPath (Environment.SpecialFolder.Desktop);
+						unnamedScreenshotsPath = Environment.GetFolderPath (Environment.SpecialFolder.Desktop);
 						break;
 
 					case 2:
 					case 3:
-						screenshostPath = Environment.GetFolderPath (Environment.SpecialFolder.MyPictures);
+						unnamedScreenshotsPath = Environment.GetFolderPath (Environment.SpecialFolder.MyPictures);
 						break;
 					}
 
-				if (!screenshostPath.EndsWith ("\\"))
-					screenshostPath += "\\";
-				if (PathIndex % 2 == 1)
-					screenshostPath += (ProgramDescription.AssemblyMainName + " - " +
+				if (!unnamedScreenshotsPath.EndsWith ("\\"))
+					unnamedScreenshotsPath += "\\";
+
+				if (UnnamedPathIndex % 2 == 1)
+					{
+					unnamedScreenshotsPath += (ProgramDescription.AssemblyMainName + " - " +
 						DateTime.Now.ToString ("yyyy-MM-dd") + "\\");
 
-				// Попытка создания
-				try
-					{
-					Directory.CreateDirectory (screenshostPath);
+					// Попытка создания
+					try
+						{
+						Directory.CreateDirectory (unnamedScreenshotsPath);
+						}
+					catch { }
 					}
-				catch { }
 
-				return screenshostPath;
+				return unnamedScreenshotsPath;
 				}
 			}
-		private static string screenshostPath = "";
+		private static string unnamedScreenshotsPath = "";
+
+		/// <summary>
+		/// Возвращает путь для сохранения изображений с названиями
+		/// </summary>
+		public static string NamedScreenshostPath
+			{
+			get
+				{
+				if (!string.IsNullOrWhiteSpace (namedScreenshotsPath))
+					return namedScreenshotsPath;
+
+				// Сборка пути
+				switch (NamedPathIndex)
+					{
+					case 0:
+					case 1:
+					default:
+						namedScreenshotsPath = Environment.GetFolderPath (Environment.SpecialFolder.Desktop);
+						break;
+
+					case 2:
+					case 3:
+						namedScreenshotsPath = Environment.GetFolderPath (Environment.SpecialFolder.MyPictures);
+						break;
+					}
+
+				if (!namedScreenshotsPath.EndsWith ("\\"))
+					namedScreenshotsPath += "\\";
+
+				if (NamedPathIndex % 2 == 1)
+					{
+					namedScreenshotsPath += (ProgramDescription.AssemblyMainName + " - " +
+						DateTime.Now.ToString ("yyyy-MM-dd") + "\\");
+
+					// Попытка создания
+					try
+						{
+						Directory.CreateDirectory (namedScreenshotsPath);
+						}
+					catch { }
+					}
+
+				return namedScreenshotsPath;
+				}
+			}
+		private static string namedScreenshotsPath = "";
 
 		/// <summary>
 		/// Возвращает расширение файлов для сохранения изображений

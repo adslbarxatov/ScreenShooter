@@ -21,6 +21,18 @@ namespace RD_AAOW
 		private bool hideWindow = false;
 		private NotifyIcon ni = new NotifyIcon ();
 
+		// Возвращает текущий используемый экран
+		private Screen ActiveScreen
+			{
+			get
+				{
+				if (ScreenShooterSettings.CurrentScreen >= Screen.AllScreens.Length)
+					ScreenShooterSettings.CurrentScreen = 0;
+
+				return Screen.AllScreens[(int)ScreenShooterSettings.CurrentScreen];
+				}
+			}
+
 		/// <summary>
 		/// Главная форма программы
 		/// </summary>
@@ -31,13 +43,13 @@ namespace RD_AAOW
 
 			// Настройка
 			this.Text = ProgramDescription.AssemblyTitle;
-			/*if (!RDGenerics.IsRegistryAccessible)*/
 			if (!RDGenerics.AppHasAccessRights (false, true))
 				this.Text += RDLocale.GetDefaultText (RDLDefaultTexts.Message_LimitedFunctionality);
 
 			this.Left = this.Top = 0;
-			this.Width = Screen.PrimaryScreen.Bounds.Width;
-			this.Height = Screen.PrimaryScreen.Bounds.Height;
+			this.Location = ActiveScreen.Bounds.Location;
+			this.Width = ActiveScreen.Bounds.Width;
+			this.Height = ActiveScreen.Bounds.Height;
 
 			hideWindow = (Flags == HideWindowKey);
 
@@ -82,7 +94,7 @@ namespace RD_AAOW
 			// Сохранение изображения
 			if (e.Button == MouseButtons.Right)
 				{
-				SaveImage ();
+				SaveImage (false);
 				return;
 				}
 
@@ -142,7 +154,7 @@ namespace RD_AAOW
 			{
 			if (e.Button == MouseButtons.Right)
 				{
-				SaveImage ();
+				SaveImage (false);
 				return;
 				}
 
@@ -167,7 +179,7 @@ namespace RD_AAOW
 
 				// Сохранение
 				case Keys.Return:
-					SaveImage ();
+					SaveImage (e.Shift);
 					break;
 
 				// Выход / скрытие окна
@@ -195,7 +207,12 @@ namespace RD_AAOW
 						}
 					else
 						{
-						if (GetPointedWindowBounds (MousePosition.X, MousePosition.Y))
+						if (!ActiveScreen.Primary)
+							{
+							RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center,
+								"NotAvailableForSecondaryScreen", 1500);
+							}
+						else if (GetPointedWindowBounds (MousePosition))
 							{
 							MainSelection.Text = "(" + MainSelection.Left.ToString () + "; " +
 								MainSelection.Top.ToString () + ") (" + MainSelection.Width.ToString () +
@@ -209,19 +226,29 @@ namespace RD_AAOW
 				case Keys.L:
 					ChangeLanguage (null, null);
 					break;
+
+				// Смена текущего экрана
+				case Keys.Tab:
+					ScreenShooterSettings.CurrentScreen =
+						(uint)((ScreenShooterSettings.CurrentScreen + 1) % Screen.AllScreens.Length);
+
+					this.Location = ActiveScreen.Bounds.Location;
+					this.Width = ActiveScreen.Bounds.Width;
+					this.Height = ActiveScreen.Bounds.Height;
+					break;
 				}
 			}
 
 		// Сохранение изображения
-		private void SaveImage ()
+		private void SaveImage (bool AskTheName)
 			{
 			// Фиксация размера
 			if (!MainSelection.Visible)
 				{
 				start.X = 0;
 				start.Y = 0;
-				end.X = Screen.PrimaryScreen.Bounds.Width - 1;
-				end.Y = Screen.PrimaryScreen.Bounds.Height - 1;
+				end.X = ActiveScreen.Bounds.Width - 1;
+				end.Y = ActiveScreen.Bounds.Height - 1;
 				}
 
 			// На случай зеркального выделения
@@ -238,6 +265,10 @@ namespace RD_AAOW
 				end.Y = y;
 				}
 
+			// Поправка на расположение на экране
+			start.Offset (this.Location);
+			end.Offset (this.Location);
+
 			// Получение дескриптора и снимка экрана
 			if (b != null)
 				b.Dispose ();
@@ -253,13 +284,31 @@ namespace RD_AAOW
 			g.Dispose ();
 
 			// Попытка сохранения
-			string path = ScreenShooterSettings.ScreenshostPath + DateTime.Now.ToString ("yyyy-MM-dd HH-mm-ss") +
-				ScreenShooterSettings.ScreenshostFileExt;
+			string path;
+			if (AskTheName)
+				{
+				string name = RDGenerics.LocalizedMessageBox ("EnterTheFileName", true, 256);
+				if (string.IsNullOrWhiteSpace (name))
+					return;
+
+				char[] invChars = Path.GetInvalidFileNameChars ();
+				for (int i = 0; i < invChars.Length; i++)
+					name = name.Replace (invChars[i], '_');
+
+				path = ScreenShooterSettings.NamedScreenshostPath + name +
+					ScreenShooterSettings.ScreenshostFileExt;
+				}
+			else
+				{
+				path = ScreenShooterSettings.UnnamedScreenshotsPath + DateTime.Now.ToString ("yyyy-MM-dd HH-mm-ss") +
+					ScreenShooterSettings.ScreenshostFileExt;
+				}
+
 			try
 				{
 				b.Save (path, ScreenShooterSettings.ScreenshotsFormat);
 
-				RDGenerics.MessageBox (RDMessageTypes.Success_Center, RDLocale.GetText ("ImageSaved"), 750);
+				RDGenerics.LocalizedMessageBox (RDMessageTypes.Success_Center, "ImageSaved", 750);
 				}
 			catch
 				{
@@ -273,10 +322,10 @@ namespace RD_AAOW
 			}
 
 		// Получение границ окна, на которое наведён курсор
-		private bool GetPointedWindowBounds (int X, int Y)
+		private bool GetPointedWindowBounds (Point Mouse)
 			{
 			// Получение дескриптора окна
-			POINT p = new POINT (X, Y);
+			POINT p = new POINT (Mouse.X, Mouse.Y);
 			IntPtr hWnd = IntPtr.Zero;
 
 			try
@@ -310,10 +359,10 @@ namespace RD_AAOW
 			MainSelection.Left = start.X = (r.Left < 0) ? 0 : r.Left;
 			MainSelection.Top = start.Y = (r.Top < 0) ? 0 : r.Top;
 
-			if (r.Right > Screen.PrimaryScreen.Bounds.Width)
-				r.Right = Screen.PrimaryScreen.Bounds.Width;
-			if (r.Bottom > Screen.PrimaryScreen.Bounds.Height)
-				r.Bottom = Screen.PrimaryScreen.Bounds.Height;
+			if (r.Right > ActiveScreen.Bounds.Width)
+				r.Right = ActiveScreen.Bounds.Width;
+			if (r.Bottom > ActiveScreen.Bounds.Height)
+				r.Bottom = ActiveScreen.Bounds.Height;
 
 			MainSelection.Width = r.Right - r.Left;
 			MainSelection.Height = r.Bottom - r.Top;

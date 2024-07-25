@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EnterTheFileName" xml:space="preserve">
+    <value>
+Enter the name for new file:</value>
+  </data>
   <data name="HelpKeysText" xml:space="preserve">
     <value>Controls:
 
@@ -124,11 +128,13 @@
 • Left click or [Space] key (if selection made) – resetting the selection;
 • [Space] key (if selection absent) – selection of window that is pointed by mouse;
 • Right mouse button or [Enter] key – image saving;
+• [Shift] + [Enter] keys – image saving with entering its name;
+• [Tab] key – changing of the current screen (if applicable);
 
 • [Q], [X] – exiting the application;
 • [Esc], [H] – minimize the application to tray;
 • [P], [S] – application settings;
-• [F2] – displaying of the app about window;
+• [F2] – displaying of the “App about” window;
 • [L] – changing of interface language;
 • [F1], [?] – displaying of this quick guide</value>
   </data>
@@ -137,6 +143,12 @@
   </data>
   <data name="MenuSettings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="NamedScreenshotsPath" xml:space="preserve">
+    <value>Where to save named screenshots:</value>
+  </data>
+  <data name="NotAvailableForSecondaryScreen" xml:space="preserve">
+    <value>Windows doesn’t support this option for secondary screens</value>
   </data>
   <data name="Path00" xml:space="preserve">
     <value>On the desktop</value>
@@ -156,10 +168,10 @@
   <data name="SaveImageTitle" xml:space="preserve">
     <value>Specify path for new image</value>
   </data>
-  <data name="ScreenshotsPath" xml:space="preserve">
-    <value>Where to save screenshots:</value>
-  </data>
   <data name="ScreenshotsType" xml:space="preserve">
     <value>Images type:</value>
+  </data>
+  <data name="UnnamedScreenshotsPath" xml:space="preserve">
+    <value>Where to save quick screenshots:</value>
   </data>
 </root>

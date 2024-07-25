@@ -1,3 +1,3 @@
-_Changes for v 3.2.2_:
-- `XPUN` update has been applied;
-- The application has been retargeted to `.NET Framework 4.8.1`
+_Changes for v 3.3_:
+- Implemented the ability to change the current screen (`Tab` key) if the operating system uses multiple screens to extend the desktop;
+- Implemented the ability to name the screenshot (`Shift` + `Enter` keys) during creation. This option uses its own path for saving images
