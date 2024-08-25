@@ -1,4 +1,5 @@
-_Changes for v 3.3.1_:
+_Changes for v 3.3.2_:
+- The new identity has been applied;
 - The “App about” interface has been updated;
 - Implemented the ability to change the current screen (`Tab` key) if the operating system uses multiple screens to extend the desktop;
 - Implemented the ability to name the screenshot (`Shift` + `Enter` keys) during creation. This option uses its own path for saving images
