@@ -7,7 +7,7 @@
 
 - [General information](#general-information)
 - [Download links](https://adslbarxatov.github.io/DPArray#screen-shooter)
-- [Русская версия](https://adslbarxatov.github.io/ScreenShooter/ru)
+- [Версия на русском языке](https://adslbarxatov.github.io/ScreenShooter/ru)
 
 ---
 
