@@ -1,8 +1,7 @@
 Screen shooter: changes log
 
-ToDo (by Evgeniy K.):
-- Implement in-app notifications based on screenshots:
-  - using the timer selection during the image saving;
+Version 3.4:
+• Added the aiming cross that should simplify the area selection
 
 Version 3.3.3:
 • Current updates have been applied

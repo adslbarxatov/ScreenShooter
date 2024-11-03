@@ -13,8 +13,10 @@ namespace RD_AAOW
 		{
 		// Параметры
 		private Point start, end;
-		private Graphics g;
+		private Graphics g, gf;
 		private Bitmap b;
+		private Pen p;
+		private DateTime lastCrossUpdate = new DateTime (2001, 1, 1, 0, 0, 0);
 
 		// Управление окном
 		private const string HideWindowKey = "-h";
@@ -71,6 +73,9 @@ namespace RD_AAOW
 			ni.ContextMenu.MenuItems[3].DefaultItem = true;
 
 			ni.MouseDown += ReturnWindow;
+
+			gf = Graphics.FromHwnd (this.Handle);
+			p = new Pen (Color.FromArgb (255, 0, 0), 1.0f);
 			}
 
 		private void ScreenShooterForm_Shown (object sender, EventArgs e)
@@ -86,6 +91,10 @@ namespace RD_AAOW
 			// Завершение
 			if (ni != null)
 				ni.Visible = false;
+			if (gf != null)
+				gf.Dispose ();
+			if (p != null)
+				p.Dispose ();
 			}
 
 		// Нажатие мыши
@@ -112,6 +121,22 @@ namespace RD_AAOW
 		// Движение мыши
 		private void MainForm_MouseMove (object sender, MouseEventArgs e)
 			{
+			// Отрисовка перекрестия
+			if (lastCrossUpdate.AddMilliseconds (10) < DateTime.Now)
+				{
+				lastCrossUpdate = DateTime.Now;
+				gf.Clear (this.BackColor);
+
+				if (e.Button != MouseButtons.Left)
+					{
+					gf.DrawLine (p, e.X, 0, e.X, this.Height);
+					gf.DrawLine (p, 0, e.Y, this.Width, e.Y);
+
+					return;
+					}
+				}
+
+			// Нажатие кнопки
 			if (e.Button != MouseButtons.Left)
 				return;
 
