@@ -81,7 +81,7 @@ namespace RD_AAOW
 		private void ScreenShooterForm_Shown (object sender, EventArgs e)
 			{
 			if (AboutForm.VeryFirstStart)
-				RDGenerics.LocalizedMessageBox (RDMessageTypes.Success_Left, "HelpKeysText");
+				RDInterface.LocalizedMessageBox (RDMessageTypes.Success_Left, "HelpKeysText");
 			else if (hideWindow)
 				this.Hide ();
 			}
@@ -195,7 +195,7 @@ namespace RD_AAOW
 				// Справка
 				case Keys.F1:
 				case Keys.OemQuestion:
-					RDGenerics.LocalizedMessageBox (RDMessageTypes.Success_Left, "HelpKeysText");
+					RDInterface.LocalizedMessageBox (RDMessageTypes.Success_Left, "HelpKeysText");
 					break;
 
 				case Keys.F2:
@@ -234,7 +234,7 @@ namespace RD_AAOW
 						{
 						if (!ActiveScreen.Primary)
 							{
-							RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center,
+							RDInterface.LocalizedMessageBox (RDMessageTypes.Warning_Center,
 								"NotAvailableForSecondaryScreen", 1500);
 							}
 						else if (GetPointedWindowBounds (MousePosition))
@@ -312,7 +312,7 @@ namespace RD_AAOW
 			string path;
 			if (AskTheName)
 				{
-				string name = RDGenerics.LocalizedMessageBox ("EnterTheFileName", true, 256);
+				string name = RDInterface.LocalizedMessageBox ("EnterTheFileName", true, 256);
 				if (string.IsNullOrWhiteSpace (name))
 					return;
 
@@ -333,11 +333,11 @@ namespace RD_AAOW
 				{
 				b.Save (path, ScreenShooterSettings.ScreenshotsFormat);
 
-				RDGenerics.LocalizedMessageBox (RDMessageTypes.Success_Center, "ImageSaved", 750);
+				RDInterface.LocalizedMessageBox (RDMessageTypes.Success_Center, "ImageSaved", 750);
 				}
 			catch
 				{
-				RDGenerics.MessageBox (RDMessageTypes.Warning_Center,
+				RDInterface.MessageBox (RDMessageTypes.Warning_Center,
 					string.Format (RDLocale.GetDefaultText (RDLDefaultTexts.Message_SaveFailure_Fmt),
 					Path.GetFileName (path)));
 				}
@@ -433,13 +433,13 @@ namespace RD_AAOW
 		// Изменение языка интерфейса
 		private void ChangeLanguage (object sender, EventArgs e)
 			{
-			RDGenerics.MessageBox ();
+			RDInterface.MessageBox ();
 			}
 
 		// Информация о программе
 		private void AppAbout (object sender, EventArgs e)
 			{
-			RDGenerics.ShowAbout (false);
+			RDInterface.ShowAbout (false);
 			}
 
 		// Описания, необходимые для получения границ окна
