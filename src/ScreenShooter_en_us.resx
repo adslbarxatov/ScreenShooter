@@ -129,6 +129,9 @@ Enter the name for new file:</value>
 • [Space] key (if selection absent) – selection of window that is pointed by mouse;
 • Right mouse button or [Enter] key – image saving;
 • [Shift] + [Enter] keys – image saving with entering its name;
+• [B] key – saving an image from the clipboard (to support the [PrtScr] key);
+• [Shift] + [B] keys – saving with entering the name;
+
 • [Tab] key – changing of the current screen (if applicable);
 
 • [Q], [X] – exiting the application;
@@ -146,6 +149,9 @@ Enter the name for new file:</value>
   </data>
   <data name="NamedScreenshotsPath" xml:space="preserve">
     <value>Where to save named screenshots:</value>
+  </data>
+  <data name="NoPictureInClipboard" xml:space="preserve">
+    <value>No pictures found in clipboard</value>
   </data>
   <data name="NotAvailableForSecondaryScreen" xml:space="preserve">
     <value>Windows doesn’t support this option for secondary screens</value>

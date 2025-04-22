@@ -59,20 +59,29 @@ namespace RD_AAOW
 		private const string namedPathIndexPar = "NamedPathIndex";
 
 		/// <summary>
-		/// Возвращает или задаёт индекс текущего экрана
+		/// Возвращает индекс текущего экрана
 		/// </summary>
-		public static uint CurrentScreen
+		public static uint ScreenNumber
 			{
 			get
 				{
 				return RDGenerics.GetSettings (currentScreenPar, 0);
 				}
-			set
-				{
-				RDGenerics.SetSettings (currentScreenPar, value);
-				}
 			}
 		private const string currentScreenPar = "CurrentScreen";
+
+		/// <summary>
+		/// Метод сохраняет номер текущего экрана
+		/// </summary>
+		/// <param name="Number">Новый номер текущего экрана</param>
+		public static void SetScreenNumber (uint Number)
+			{
+			uint number = Number;
+			if (number >= Screen.AllScreens.Length)
+				number = 0;
+
+			RDGenerics.SetSettings (currentScreenPar, number);
+			}
 
 		/// <summary>
 		/// Конструктор. Запускает настройку программы
@@ -179,7 +188,7 @@ namespace RD_AAOW
 						break;
 					}
 
-				if (!unnamedScreenshotsPath.EndsWith ("\\"))
+				if (!unnamedScreenshotsPath.EndsWith ('\\'))
 					unnamedScreenshotsPath += "\\";
 
 				if (UnnamedPathIndex % 2 == 1)
@@ -225,7 +234,7 @@ namespace RD_AAOW
 						break;
 					}
 
-				if (!namedScreenshotsPath.EndsWith ("\\"))
+				if (!namedScreenshotsPath.EndsWith ('\\'))
 					namedScreenshotsPath += "\\";
 
 				if (NamedPathIndex % 2 == 1)

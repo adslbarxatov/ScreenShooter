@@ -1,5 +1,5 @@
 # Screen shooter: user guide
-> **ƒ** &nbsp;RD AAOW FDL; 27.03.2024; 0:18
+> **ƒ** &nbsp;RD AAOW FDL; 23.04.2025; 0:22
 
 
 
@@ -23,6 +23,9 @@ of other applications.
 - `Space` key (if selection absent) – selection of window that is pointed by mouse;
 - `Right mouse button` or `Enter` key – image saving;
 - `Shift` + `Enter` keys – image saving with entering its name;
+- `B` key – saving an image from the clipboard (to support the `PrtScr` key);
+- `Shift` + `B` keys – saving with entering the name;
+
 - `Tab` key – changing of the current screen (if applicable);
 
 - `Q`, `X` – exiting the application;

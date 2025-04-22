@@ -24,14 +24,14 @@ namespace RD_AAOW
 		private NotifyIcon ni = new NotifyIcon ();
 
 		// Возвращает текущий используемый экран
-		private Screen ActiveScreen
+		private static Screen ActiveScreen
 			{
 			get
 				{
-				if (ScreenShooterSettings.CurrentScreen >= Screen.AllScreens.Length)
-					ScreenShooterSettings.CurrentScreen = 0;
+				/*if (ScreenShooterSettings.ScreenNumber >= Screen.AllScreens.Length)
+					ScreenShooterSettings.ScreenNumber = 0;*/
 
-				return Screen.AllScreens[(int)ScreenShooterSettings.CurrentScreen];
+				return Screen.AllScreens[(int)ScreenShooterSettings.ScreenNumber];
 				}
 			}
 
@@ -56,21 +56,22 @@ namespace RD_AAOW
 			hideWindow = (Flags == HideWindowKey);
 
 			// Настройка иконки в трее
-			ni.Icon = Properties.ScreenShooter.ScreenShooterTray;
+			ni.Icon = ScreenShooterResources.ScreenShooterTray;
 			ni.Text = ProgramDescription.AssemblyTitle;
 			ni.Visible = true;
 
-			ni.ContextMenu = new ContextMenu ();
+			ni.ContextMenuStrip = new ContextMenuStrip ();
+			ni.ContextMenuStrip.ShowImageMargin = false;
 
-			ni.ContextMenu.MenuItems.Add (new MenuItem (RDLocale.GetText ("MenuSettings"),
-				ChangeSettings));
-			ni.ContextMenu.MenuItems.Add (new MenuItem (RDLocale.GetDefaultText
-				(RDLDefaultTexts.Control_InterfaceLanguage).Replace (":", ""), ChangeLanguage));
-			ni.ContextMenu.MenuItems.Add (new MenuItem (RDLocale.GetDefaultText
-				(RDLDefaultTexts.Control_AppAbout), AppAbout));
-			ni.ContextMenu.MenuItems.Add (new MenuItem (RDLocale.GetDefaultText (RDLDefaultTexts.Button_Exit),
-				CloseService));
-			ni.ContextMenu.MenuItems[3].DefaultItem = true;
+			ni.ContextMenuStrip.Items.Add (RDLocale.GetText ("MenuSettings"),
+				null, ChangeSettings);
+			ni.ContextMenuStrip.Items.Add (RDLocale.GetDefaultText (RDLDefaultTexts.Control_InterfaceLanguage).Replace (":", ""),
+				null, ChangeLanguage);
+			ni.ContextMenuStrip.Items.Add (RDLocale.GetDefaultText (RDLDefaultTexts.Control_AppAbout),
+				null, AppAbout);
+			ni.ContextMenuStrip.Items.Add (RDLocale.GetDefaultText (RDLDefaultTexts.Button_Exit),
+				null, CloseService);
+			/*ni.ContextMenu.MenuItems[3].DefaultItem = true;*/
 
 			ni.MouseDown += ReturnWindow;
 
@@ -254,17 +255,35 @@ namespace RD_AAOW
 
 				// Смена текущего экрана
 				case Keys.Tab:
-					ScreenShooterSettings.CurrentScreen =
-						(uint)((ScreenShooterSettings.CurrentScreen + 1) % Screen.AllScreens.Length);
+					/*ScreenShooterSettings.ScreenNumber =
+						(uint)((ScreenShooterSettings.ScreenNumber + 1) % Screen.AllScreens.Length);*/
+					ScreenShooterSettings.SetScreenNumber (ScreenShooterSettings.ScreenNumber + 1);
 
 					this.Location = ActiveScreen.Bounds.Location;
 					this.Width = ActiveScreen.Bounds.Width;
 					this.Height = ActiveScreen.Bounds.Height;
 					break;
+
+				// Подмена картинки изображением, полученным от PrtScr
+				case Keys.B:
+					Image img = null;
+					try
+						{
+						img = Clipboard.GetImage ();
+						}
+					catch { }
+					if (img == null)
+						{
+						RDInterface.LocalizedMessageBox (RDMessageTypes.Warning_Center, "NoPictureInClipboard", 1500);
+						return;
+						}
+
+					SaveBitmap ((Bitmap)img, e.Shift);
+					break;
 				}
 			}
 
-		// Сохранение изображения
+		// Метод извлекает изображение из указанной области и сохраняет его в файл
 		private void SaveImage (bool AskTheName)
 			{
 			// Фиксация размера
@@ -309,6 +328,12 @@ namespace RD_AAOW
 			g.Dispose ();
 
 			// Попытка сохранения
+			SaveBitmap (b, AskTheName);
+			}
+
+		// Метод выполняет непосредственное сохранение изображения в файл
+		private static void SaveBitmap (Bitmap Picture, bool AskTheName)
+			{
 			string path;
 			if (AskTheName)
 				{
@@ -331,7 +356,7 @@ namespace RD_AAOW
 
 			try
 				{
-				b.Save (path, ScreenShooterSettings.ScreenshotsFormat);
+				Picture.Save (path, ScreenShooterSettings.ScreenshotsFormat);
 
 				RDInterface.LocalizedMessageBox (RDMessageTypes.Success_Center, "ImageSaved", 750);
 				}
@@ -343,7 +368,7 @@ namespace RD_AAOW
 				}
 
 			// Завершение
-			b.Dispose ();
+			Picture.Dispose ();
 			}
 
 		// Получение границ окна, на которое наведён курсор
@@ -351,7 +376,8 @@ namespace RD_AAOW
 			{
 			// Получение дескриптора окна
 			POINT p = new POINT (Mouse.X, Mouse.Y);
-			IntPtr hWnd = IntPtr.Zero;
+			/*IntPtr hWnd = IntPtr.Zero;*/
+			IntPtr hWnd;
 
 			try
 				{
@@ -369,7 +395,8 @@ namespace RD_AAOW
 				}
 
 			// Получение границ окна
-			RECT r = new RECT ();
+			/*RECT r = new RECT ();*/
+			RECT r;
 			try
 				{
 				if (!GetWindowRect (hWnd, out r))

@@ -1,5 +1,10 @@
 Screen shooter: changes log
 
+Version 3.5:
+• The application has been migrated to .NET 9.0 from .NET Framework 4.8.1;
+• App now supports the saving images from clipboard (to support the default
+  action of [PrtScr] key). Uses [B] and [Shift] + [B] hotkeys
+
 Version 3.4.5:
 • Current updates have been applied;
 
