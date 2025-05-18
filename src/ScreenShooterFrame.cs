@@ -28,9 +28,6 @@ namespace RD_AAOW
 			{
 			get
 				{
-				/*if (ScreenShooterSettings.ScreenNumber >= Screen.AllScreens.Length)
-					ScreenShooterSettings.ScreenNumber = 0;*/
-
 				return Screen.AllScreens[(int)ScreenShooterSettings.ScreenNumber];
 				}
 			}
@@ -71,7 +68,6 @@ namespace RD_AAOW
 				null, AppAbout);
 			ni.ContextMenuStrip.Items.Add (RDLocale.GetDefaultText (RDLDefaultTexts.Button_Exit),
 				null, CloseService);
-			/*ni.ContextMenu.MenuItems[3].DefaultItem = true;*/
 
 			ni.MouseDown += ReturnWindow;
 
@@ -255,8 +251,6 @@ namespace RD_AAOW
 
 				// Смена текущего экрана
 				case Keys.Tab:
-					/*ScreenShooterSettings.ScreenNumber =
-						(uint)((ScreenShooterSettings.ScreenNumber + 1) % Screen.AllScreens.Length);*/
 					ScreenShooterSettings.SetScreenNumber (ScreenShooterSettings.ScreenNumber + 1);
 
 					this.Location = ActiveScreen.Bounds.Location;
@@ -376,7 +370,6 @@ namespace RD_AAOW
 			{
 			// Получение дескриптора окна
 			POINT p = new POINT (Mouse.X, Mouse.Y);
-			/*IntPtr hWnd = IntPtr.Zero;*/
 			IntPtr hWnd;
 
 			try
@@ -395,7 +388,6 @@ namespace RD_AAOW
 				}
 
 			// Получение границ окна
-			/*RECT r = new RECT ();*/
 			RECT r;
 			try
 				{
