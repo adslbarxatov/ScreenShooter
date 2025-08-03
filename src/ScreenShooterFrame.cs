@@ -77,8 +77,8 @@ namespace RD_AAOW
 
 		private void ScreenShooterForm_Shown (object sender, EventArgs e)
 			{
-			if (AboutForm.VeryFirstStart)
-				RDInterface.LocalizedMessageBox (RDMessageTypes.Success_Left, "HelpKeysText");
+			if (RDAboutForm.VeryFirstStart)
+				RDInterface.LocalizedMessageBox (RDMessageFlags.Success | RDMessageFlags.NoSound, "HelpKeysText");
 			else if (hideWindow)
 				this.Hide ();
 			}
@@ -192,7 +192,8 @@ namespace RD_AAOW
 				// Справка
 				case Keys.F1:
 				case Keys.OemQuestion:
-					RDInterface.LocalizedMessageBox (RDMessageTypes.Success_Left, "HelpKeysText");
+					RDInterface.LocalizedMessageBox (RDMessageFlags.Success | RDMessageFlags.NoSound,
+						"HelpKeysText");
 					break;
 
 				case Keys.F2:
@@ -231,7 +232,7 @@ namespace RD_AAOW
 						{
 						if (!ActiveScreen.Primary)
 							{
-							RDInterface.LocalizedMessageBox (RDMessageTypes.Warning_Center,
+							RDInterface.LocalizedMessageBox (RDMessageFlags.Warning | RDMessageFlags.CenterText,
 								"NotAvailableForSecondaryScreen", 1500);
 							}
 						else if (GetPointedWindowBounds (MousePosition))
@@ -268,7 +269,8 @@ namespace RD_AAOW
 					catch { }
 					if (img == null)
 						{
-						RDInterface.LocalizedMessageBox (RDMessageTypes.Warning_Center, "NoPictureInClipboard", 1500);
+						RDInterface.LocalizedMessageBox (RDMessageFlags.Warning | RDMessageFlags.CenterText,
+							"NoPictureInClipboard", 1500);
 						return;
 						}
 
@@ -352,11 +354,12 @@ namespace RD_AAOW
 				{
 				Picture.Save (path, ScreenShooterSettings.ScreenshotsFormat);
 
-				RDInterface.LocalizedMessageBox (RDMessageTypes.Success_Center, "ImageSaved", 750);
+				RDInterface.LocalizedMessageBox (RDMessageFlags.Success | RDMessageFlags.CenterText | RDMessageFlags.NoSound,
+					"ImageSaved", 750);
 				}
 			catch
 				{
-				RDInterface.MessageBox (RDMessageTypes.Warning_Center,
+				RDInterface.MessageBox (RDMessageFlags.Warning | RDMessageFlags.CenterText,
 					string.Format (RDLocale.GetDefaultText (RDLDefaultTexts.Message_SaveFailure_Fmt),
 					Path.GetFileName (path)));
 				}
