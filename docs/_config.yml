@@ -10,4 +10,4 @@ defaults:
   - scope:
       path: ""
     values:
-      image: /img/ScS.png
+      image: /img/SC.png
