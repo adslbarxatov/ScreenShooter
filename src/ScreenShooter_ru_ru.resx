@@ -174,7 +174,7 @@
   <data name="SaveImageTitle" xml:space="preserve">
     <value>Укажите путь для сохранения изображения</value>
   </data>
-  <data name="ScreenshotsPath" xml:space="preserve">
+  <data name="UnnamedScreenshotsPath" xml:space="preserve">
     <value>Где следует сохранять быстрые скриншоты:</value>
   </data>
   <data name="ScreenshotsType" xml:space="preserve">
