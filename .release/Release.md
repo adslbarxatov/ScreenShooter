@@ -1,5 +1,3 @@
-_Changes for v 3.5.6_:
-- Fixed missing text tips;
-- The project identity has been updated;
+_Changes for v 3.5.7_:
 - Internal assemblies have been updated;
-- XPUN / IOP update has been applied
+- Fixed missing text tips
