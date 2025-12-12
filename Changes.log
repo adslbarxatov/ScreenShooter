@@ -1,6 +1,7 @@
 Screen shooter: changes log
 
-Version 3.5.7:
+Version 3.6:
+• App has been migrated to .NET 10;
 • Internal assemblies have been updated
 
 Version 3.5.6:
