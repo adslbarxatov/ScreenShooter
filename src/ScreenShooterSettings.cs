@@ -93,7 +93,9 @@ namespace RD_AAOW
 
 			SaveButton.Text = RDLocale.GetDefaultText (RDLDefaultTexts.Button_Save);
 			AbortButton.Text = RDLocale.GetDefaultText (RDLDefaultTexts.Button_Cancel);
-			this.Text = ProgramDescription.AssemblyTitle;
+			/*this.Text = ProgramDescription.AssemblyTitle;*/
+			this.Text = RDGenerics.DefaultAssemblyVisibleName;
+			RDGenerics.LoadWindowDimensions (this);
 
 			for (int i = 0; i < 4; i++)
 				{
@@ -315,5 +317,11 @@ namespace RD_AAOW
 				}
 			}
 		private static ImageFormat screenshotsFormat = ImageFormat.Exif;
+
+		// Закрытие окна
+		private void ScreenShooterSettings_FormClosing (object sender, FormClosingEventArgs e)
+			{
+			RDGenerics.SaveWindowDimensions (this);
+			}
 		}
 	}
