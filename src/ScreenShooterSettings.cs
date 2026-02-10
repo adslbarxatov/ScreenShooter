@@ -93,7 +93,6 @@ namespace RD_AAOW
 
 			SaveButton.Text = RDLocale.GetDefaultText (RDLDefaultTexts.Button_Save);
 			AbortButton.Text = RDLocale.GetDefaultText (RDLDefaultTexts.Button_Cancel);
-			/*this.Text = ProgramDescription.AssemblyTitle;*/
 			this.Text = RDGenerics.DefaultAssemblyVisibleName;
 			RDGenerics.LoadWindowDimensions (this);
 

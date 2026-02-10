@@ -41,7 +41,6 @@ namespace RD_AAOW
 			InitializeComponent ();
 
 			// Настройка
-			/*this.Text = ProgramDescription.AssemblyTitle;*/
 			this.Text = RDGenerics.DefaultAssemblyVisibleName;
 			if (!RDGenerics.AppHasAccessRights (false, true))
 				this.Text += RDLocale.GetDefaultText (RDLDefaultTexts.Message_LimitedFunctionality);
@@ -55,7 +54,6 @@ namespace RD_AAOW
 
 			// Настройка иконки в трее
 			ni.Icon = ScreenShooterResources.ScreenShooterTray;
-			/*ni.Text = ProgramDescription.AssemblyTitle;*/
 			ni.Text = RDGenerics.DefaultAssemblyVisibleName;
 			ni.Visible = true;
 
@@ -64,7 +62,6 @@ namespace RD_AAOW
 
 			ni.ContextMenuStrip.Items.Add (RDLocale.GetText ("MenuSettings"),
 				null, ChangeSettings);
-			/*ni.ContextMenuStrip.Items.Add (RDLocale.GetDefaultText (RDLDefaultTexts.Control_InterfaceLanguage).Replace (":", ""),*/
 			ni.ContextMenuStrip.Items.Add (RDLocale.GetDefaultText (RDLDefaultTexts.Control_InterfaceLanguageNC),
 				null, ChangeLanguage);
 			ni.ContextMenuStrip.Items.Add (RDLocale.GetDefaultText (RDLDefaultTexts.Control_AppAbout),
