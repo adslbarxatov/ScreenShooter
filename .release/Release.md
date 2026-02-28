@@ -1,3 +1,13 @@
-_Changes for v 3.6.2_:
-- Offline help has been replaced with the PDF format;
-- Internal assemblies have been updated
+_en_us_
+
+- Upgraded the update checking method;
+- Offline help has been replaced with the PDF format
+
+⁂
+
+_ru_ru_
+
+- Обновлён метод получения сведений об обновлениях;
+- Оффлайн-справка заменена форматом PDF
+
+⁂
