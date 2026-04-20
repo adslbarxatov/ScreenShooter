@@ -62,7 +62,7 @@ namespace RD_AAOW
 
 			ni.ContextMenuStrip.Items.Add (RDLocale.GetText ("MenuSettings"),
 				null, ChangeSettings);
-			ni.ContextMenuStrip.Items.Add (RDLocale.GetDefaultText (RDLDefaultTexts.Control_InterfaceLanguageNC),
+			ni.ContextMenuStrip.Items.Add (RDLocale.GetDefaultText (RDLDefaultTexts.Control_InterfaceLanguage),
 				null, ChangeLanguage);
 			ni.ContextMenuStrip.Items.Add (RDLocale.GetDefaultText (RDLDefaultTexts.Control_AppAbout),
 				null, AppAbout);
