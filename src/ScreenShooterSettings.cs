@@ -91,8 +91,11 @@ namespace RD_AAOW
 			// Инициализация и локализация формы
 			InitializeComponent ();
 
-			SaveButton.Text = RDLocale.GetDefaultText (RDLDefaultTexts.Button_Save);
-			AbortButton.Text = RDLocale.GetDefaultText (RDLDefaultTexts.Button_Cancel);
+			/*SaveButton. Text = RDLocale.GetDefaultText (RDLDefaultTexts.Button_Save);
+			AbortButton. Text = RDLocale.GetDefaultText (RDLDefaultTexts.Button_Cancel);*/
+			RDLocale.SetDefaultControlText (SaveButton, RDLDefaultTexts.Button_Save);
+			RDLocale.SetDefaultControlText (AbortButton, RDLDefaultTexts.Button_Cancel);
+
 			this.Text = RDGenerics.DefaultAssemblyVisibleName;
 			RDGenerics.LoadWindowDimensions (this);
 
@@ -134,9 +137,12 @@ namespace RD_AAOW
 				TypeCombo.SelectedIndex = 0;
 				}
 
-			NScreenshotsPath.Text = RDLocale.GetText ("NamedScreenshotsPath");
-			UScreenshotsPath.Text = RDLocale.GetText ("UnnamedScreenshotsPath");
-			ScreenshotsType.Text = RDLocale.GetText ("ScreenshotsType");
+			/*NamedScreenshotsPath. Text = RDLocale.GetText ("NamedScreenshotsPath");
+			UnnamedScreenshotsPath. Text = RDLocale.GetText ("UnnamedScreenshotsPath");
+			ScreenshotsType. Text = RDLocale.GetText ("ScreenshotsType");*/
+			RDLocale.SetControlText (NamedScreenshotsPath);
+			RDLocale.SetControlText (UnnamedScreenshotsPath);
+			RDLocale.SetControlText (ScreenshotsType);
 
 			// Запуск
 			this.ShowDialog ();
@@ -167,7 +173,7 @@ namespace RD_AAOW
 		/// <summary>
 		/// Возвращает путь для автоматического сохранения изображений
 		/// </summary>
-		public static string UnnamedScreenshotsPath
+		public static string UnnamedScSPath
 			{
 			get
 				{
@@ -213,7 +219,7 @@ namespace RD_AAOW
 		/// <summary>
 		/// Возвращает путь для сохранения изображений с названиями
 		/// </summary>
-		public static string NamedScreenshostPath
+		public static string NamedScSPath
 			{
 			get
 				{
@@ -259,7 +265,7 @@ namespace RD_AAOW
 		/// <summary>
 		/// Возвращает расширение файлов для сохранения изображений
 		/// </summary>
-		public static string ScreenshostFileExt
+		public static string ScreenshotsFileType
 			{
 			get
 				{

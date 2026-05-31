@@ -341,13 +341,13 @@ namespace RD_AAOW
 				for (int i = 0; i < invChars.Length; i++)
 					name = name.Replace (invChars[i], '_');
 
-				path = ScreenShooterSettings.NamedScreenshostPath + name +
-					ScreenShooterSettings.ScreenshostFileExt;
+				path = ScreenShooterSettings.NamedScSPath + name +
+					ScreenShooterSettings.ScreenshotsFileType;
 				}
 			else
 				{
-				path = ScreenShooterSettings.UnnamedScreenshotsPath + DateTime.Now.ToString ("yyyy-MM-dd HH-mm-ss") +
-					ScreenShooterSettings.ScreenshostFileExt;
+				path = ScreenShooterSettings.UnnamedScSPath + DateTime.Now.ToString ("yyyy-MM-dd HH-mm-ss") +
+					ScreenShooterSettings.ScreenshotsFileType;
 				}
 
 			try
